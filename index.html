@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Saint Tropez Confeitaria · Rua Piracema, Santa Teresinha</title>
+  <meta name="description" content="Saint Tropez Confeitaria, {{street}}, {{district}}, São Paulo. {{tagline}}. Bolos e doces, pães, salgados, cafés, adega e ilha de frios. Atendimento presencial.">
+  <!-- Proposta conceito da APX Web com a marca de um cliente real: fora dos buscadores até a aprovação. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0CB1AD">
+  <meta property="og:title" content="Saint Tropez Confeitaria">
+  <meta property="og:description" content="{{tagline}}. {{street}}, {{district}}, São Paulo.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:image" content="img/salao-panorama-1600.webp">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png">
+  <link rel="apple-touch-icon" href="/icon-180.png">
+  <script>document.documentElement.classList.add('js'); setTimeout(function () { document.documentElement.classList.add('js-ready') }, 4000)</script>
+  <script type="application/ld+json">{{json-ld}}</script>
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+  <canvas class="relief" aria-hidden="true"></canvas>
+
+  <header class="top" data-top>
+    <div class="top-inner">
+      <a class="brand" href="#inicio" aria-label="Saint Tropez Confeitaria, voltar ao início">
+        <img class="brand-seal" src="/img/selo.png" width="256" height="256" alt="">
+        <span class="brand-text"><span class="brand-name">Saint Tropez</span><span class="brand-sub">confeitaria</span></span>
+      </a>
+      <nav class="nav" aria-label="Seções">
+        <ul>
+          <li><a href="#vitrine">Vitrine</a></li>
+          <li><a href="#salao">O salão</a></li>
+          <li><a href="#casa">A casa</a></li>
+          <li><a href="#instagram">Instagram</a></li>
+          <li><a href="#visite">Visite</a></li>
+        </ul>
+      </nav>
+      <p class="status status--top" data-status><span class="status-dot" aria-hidden="true"></span><span data-status-text>Todos os dias a partir das 6h</span></p>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-open>
+        <span class="menu-btn-label">Menu</span><span class="menu-btn-bars" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" data-menu hidden>
+    <nav class="menu-nav" aria-label="Menu">
+      <ul>
+        <li><a href="#vitrine" data-menu-link>Vitrine</a></li>
+        <li><a href="#salao" data-menu-link>O salão</a></li>
+        <li><a href="#casa" data-menu-link>A casa</a></li>
+        <li><a href="#instagram" data-menu-link>Instagram</a></li>
+        <li><a href="#visite" data-menu-link>Visite</a></li>
+      </ul>
+    </nav>
+    <div class="menu-foot">
+      <p class="status" data-status><span class="status-dot" aria-hidden="true"></span><span data-status-text>Todos os dias a partir das 6h</span></p>
+      <address>{{street}}<br>{{district}}, São Paulo</address>
+      <a class="btn btn--canopy" href="{{maps}}" target="_blank" rel="noopener">{{i-pin}}<span>Abrir no Google Maps</span></a>
+    </div>
+  </div>
+
+  <main id="conteudo">
+    <!-- Abertura: a fachada -->
+    <section class="hero" id="inicio" aria-labelledby="hero-t">
+      <div class="hero-copy">
+        <h1 id="hero-t" class="hero-title"><span class="ln"><span>Um novo</span></span> <span class="ln"><span>conceito em</span></span> <span class="ln"><span>confeitaria.</span></span></h1>
+        <p class="hero-lead">A Saint Tropez fica na Rua Piracema, em Santa Teresinha. Bolos e doces, pães, salgados, cafés, adega e ilha de frios, num salão coberto por arcos de vidro.</p>
+        <div class="hero-plaque">
+          <p class="status status--plaque" data-status><span class="status-dot" aria-hidden="true"></span><span data-status-text>Todos os dias a partir das 6h</span></p>
+          <p class="hero-address">{{street}} · {{district}}, São Paulo</p>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn--canopy" href="{{maps}}" target="_blank" rel="noopener">{{i-pin}}<span>Abrir no Google Maps</span></a>
+          <a class="btn btn--line" href="#vitrine"><span>Ver a vitrine</span>{{i-arrow}}</a>
+        </div>
+      </div>
+      <div class="hero-windows">
+        <figure class="window window--arch" data-hero-arch>{{hero-salao}}</figure>
+        <figure class="window window--square" data-hero-square>{{hero-cake}}</figure>
+        <p class="hero-caption">O salão e a vitrine, em fotos publicadas pela casa.</p>
+      </div>
+    </section>
+
+    <!-- A vitrine: campo turquesa, prateleiras em trilho horizontal -->
+    <section class="vitrine" id="vitrine" aria-labelledby="vitrine-t">
+      <div class="vitrine-intro">
+        <h2 id="vitrine-t" class="display">A vitrine</h2>
+        <p>Tudo o que aparece aqui foi fotografado na casa e publicado no Instagram dela. Toque numa foto para ver maior.</p>
+        <nav class="shelf-nav" aria-label="Categorias da vitrine"><ul>{{vitrine-nav}}</ul></nav>
+      </div>
+      <div class="vitrine-rail" data-rail>
+        <div class="vitrine-track" data-track>{{vitrine-shelves}}</div>
+      </div>
+      <div class="rail-progress" aria-hidden="true"><span data-rail-bar></span></div>
+    </section>
+
+    <!-- O salão: o arco que se abre -->
+    <section class="salao" id="salao" aria-labelledby="salao-t">
+      <div class="salao-stage" data-salao>
+        <div class="salao-arch" data-salao-arch>{{salao-wide}}</div>
+        <div class="salao-copy" data-salao-copy>
+          <h2 id="salao-t" class="display display--light">O salão</h2>
+          <p>Arcos brancos com vidro, palmeiras do lado de fora, mesas de tampo branco e cadeiras de palhinha. É aqui que tudo da vitrine é servido.</p>
+        </div>
+      </div>
+      <div class="salao-frames">{{salao-frames}}</div>
+    </section>
+
+    <!-- A casa: fachada, regras e reputação -->
+    <section class="casa" id="casa" aria-labelledby="casa-t">
+      <figure class="casa-facade window window--arch" data-reveal>{{facade-day}}<figcaption>A fachada em relevo, com a marquise turquesa.</figcaption></figure>
+      <div class="casa-copy">
+        <h2 id="casa-t" class="display">Branca, em relevo, na Rua Piracema</h2>
+        <p class="casa-text">A Saint Tropez é uma confeitaria da {{region}}. A fachada de pirâmides brancas e a marquise turquesa ficam no número 221 da Rua Piracema. Lá dentro, a vitrine de bolos e doces divide o salão com os pães, os salgados, os cafés, a adega e a ilha de frios.</p>
+        <div class="rules" data-reveal>
+          <ul class="rules-list">{{rules}}</ul>
+        </div>
+        <p class="casa-rating">Avisos da bio da casa no Instagram. <a href="{{maps}}" target="_blank" rel="noopener">{{rating}}</a></p>
+      </div>
+    </section>
+
+    <!-- Instagram: curadoria estática -->
+    <section class="insta" id="instagram" aria-labelledby="insta-t">
+      <div class="insta-head">
+        <h2 id="insta-t" class="display">{{ig-handle}}</h2>
+        <p>O Instagram é onde a casa mostra o que sai na vitrine e avisa o horário. Os destaques abaixo levam ao perfil.</p>
+        <a class="btn btn--canopy" href="{{instagram}}" target="_blank" rel="noopener">{{i-insta}}<span>Abrir o Instagram</span></a>
+      </div>
+      <ul class="highlights" aria-label="Destaques do perfil">{{highlights}}</ul>
+      <ul class="insta-strip" aria-label="Fotos publicadas pela casa">{{insta-strip}}</ul>
+    </section>
+
+    <!-- Visite: a noite na fachada -->
+    <section class="visite" id="visite" aria-labelledby="visite-t">
+      <div class="visite-grid">
+        <div class="visite-copy">
+          <h2 id="visite-t" class="display display--light visite-street">{{street}}</h2>
+          <p class="visite-city">{{city-line}}</p>
+          <p class="status status--night" data-status><span class="status-dot" aria-hidden="true"></span><span data-status-text>Todos os dias a partir das 6h</span></p>
+          <table class="hours" aria-label="Horário de funcionamento">
+            <tbody>{{hours-rows}}</tbody>
+          </table>
+          <p class="hours-note">{{hours-summary}}</p>
+          <div class="visite-actions">
+            <a class="btn btn--canopy" href="{{maps}}" target="_blank" rel="noopener">{{i-pin}}<span>Abrir no Google Maps</span></a>
+            <a class="btn btn--ghost" href="{{directions}}" target="_blank" rel="noopener">{{i-route}}<span>Traçar rota</span></a>
+            <a class="btn btn--ghost" href="{{waze}}" target="_blank" rel="noopener">{{i-waze}}<span>Waze</span></a>
+          </div>
+          <ul class="visite-rules">{{rules}}</ul>
+        </div>
+        <div class="visite-media">
+          <figure class="window window--arch visite-night" data-reveal>{{facade-night}}<figcaption>A entrada à noite.</figcaption></figure>
+          <div class="map" data-map>
+            <button class="map-load" type="button" data-map-load data-src="{{map-embed}}">
+              {{i-pin}}<span class="map-load-text"><strong>Mostrar o mapa aqui</strong><span>{{street}}, {{district}}</span></span><span class="map-load-go" aria-hidden="true">Carregar</span>
+            </button>
+            <p class="map-note">O mapa vem do Google e só carrega quando você pedir.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <img src="/img/selo.png" width="256" height="256" alt="" loading="lazy">
+        <p><strong>Saint Tropez</strong> confeitaria</p>
+      </div>
+      <div class="foot-col">
+        <h2>Endereço</h2>
+        <address>{{street-long}}<br>{{city-line}}</address>
+      </div>
+      <div class="foot-col">
+        <h2>Horário</h2>
+        <p>Dom a qui, 6h às 22h<br>Sex e sáb, 6h às 23h</p>
+      </div>
+      <nav class="foot-col" aria-label="Rodapé">
+        <h2>Navegue</h2>
+        <ul>
+          <li><a href="#vitrine">Vitrine</a></li>
+          <li><a href="#salao">O salão</a></li>
+          <li><a href="#casa">A casa</a></li>
+          <li><a href="{{instagram}}" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <p>Fotos: {{ig-handle}}. Endereço e horário conforme o perfil da casa no Google, outubro de 2026.</p>
+      <p>Proposta de site desenvolvida pela <a href="{{apx}}" target="_blank" rel="noopener">APX Web</a>. Conceito, sem vínculo oficial com a Saint Tropez.</p>
+    </div>
+  </footer>
+
+  <dialog class="lightbox" data-lightbox aria-label="Foto ampliada">
+    <div class="lb-stage">
+      <figure class="lb-figure">
+        <div class="lb-frame" data-lb-frame></div>
+        <figcaption class="lb-caption"><span class="lb-cat" data-lb-cat></span><span class="lb-title" data-lb-title></span><span class="lb-count" data-lb-count></span></figcaption>
+      </figure>
+      <button class="lb-btn lb-prev" type="button" data-lb-prev aria-label="Foto anterior"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6"/></svg></button>
+      <button class="lb-btn lb-next" type="button" data-lb-next aria-label="Próxima foto">{{i-arrow}}</button>
+      <button class="lb-close" type="button" data-lb-close><span>Fechar</span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,145 @@
+// Single source of truth for every fact the site shows about Saint Tropez Confeitaria.
+// Each block names where it was checked. Anything not confirmed stays out of the page
+// and is listed under `pending` so the owners can validate it.
+// Used at build time (vite.config.js renders it into index.html) and at runtime (main.js).
+
+export const checkedOn = '2026-10-13'
+
+export const site = {
+  name: 'Saint Tropez Confeitaria',
+  shortName: 'Saint Tropez',
+  // Instagram bio, checked 2026-10-13.
+  tagline: 'Um novo conceito em confeitaria',
+
+  // Google Business profile, checked 2026-10-13. Waze and BaresSP list nº 211; the
+  // Google profile (place id 0x95e8081e2e94cc) says 221 and is the one used here.
+  address: {
+    street: 'R. Piracema, 221',
+    streetLong: 'Rua Piracema, 221',
+    district: 'Santa Teresinha',
+    city: 'São Paulo',
+    state: 'SP',
+    zip: '02460-040',
+    region: 'Zona Norte de São Paulo',
+  },
+  geo: { lat: -23.4911958, lng: -46.6372651 },
+
+  links: {
+    instagram: 'https://www.instagram.com/sainttropezconfeitaria/',
+    instagramHandle: '@sainttropezconfeitaria',
+    // Opens the exact Google Business place (CID of the profile above).
+    maps: 'https://maps.google.com/?cid=42194893093639372',
+    directions:
+      'https://www.google.com/maps/dir/?api=1&destination=Saint+Tropez+Confeitaria%2C+R.+Piracema%2C+221+-+Santa+Teresinha%2C+S%C3%A3o+Paulo+-+SP',
+    waze: 'https://waze.com/ul?ll=-23.4911958%2C-46.6372651&navigate=yes',
+    mapEmbed:
+      'https://www.google.com/maps?q=Saint+Tropez+Confeitaria,+R.+Piracema,+221,+Santa+Teresinha,+S%C3%A3o+Paulo&z=16&output=embed',
+    apx: 'https://apxweb.github.io/apex-web/',
+  },
+
+  // Google Business profile, checked 2026-10-13. Index 0 = Sunday.
+  // The Instagram bio only says "6:00 às 22:00"; pending confirmation with the house.
+  hours: [
+    { day: 'Domingo', short: 'Dom', open: 6, close: 22 },
+    { day: 'Segunda', short: 'Seg', open: 6, close: 22 },
+    { day: 'Terça', short: 'Ter', open: 6, close: 22 },
+    { day: 'Quarta', short: 'Qua', open: 6, close: 22 },
+    { day: 'Quinta', short: 'Qui', open: 6, close: 22 },
+    { day: 'Sexta', short: 'Sex', open: 6, close: 23 },
+    { day: 'Sábado', short: 'Sáb', open: 6, close: 23 },
+  ],
+  hoursSummary: 'Todos os dias a partir das 6h. Até 22h de domingo a quinta, até 23h na sexta e no sábado.',
+
+  // Instagram bio, verbatim meaning, checked 2026-10-13.
+  rules: ['Atendimento presencial', 'Não fazemos reservas', 'Não fazemos entregas'],
+
+  // Google Business profile, checked 2026-10-13.
+  rating: { value: '4,6', count: '6.342', source: 'Google', month: 'outubro de 2026' },
+
+  // Instagram story highlights, checked 2026-10-13.
+  highlights: ['Clientes', 'Adega', 'Bolos e doces', 'Cafés', 'Ilha de frios', 'Localização'],
+}
+
+// Product photos: all published by the house on Instagram. Captions describe only what
+// the photo shows; no product names, prices or recipes were confirmed.
+export const vitrine = [
+  {
+    id: 'bolos-e-doces',
+    title: 'Bolos e doces',
+    note: 'O nome é o mesmo do destaque da casa no Instagram.',
+    items: [
+      { img: 'bolo-camadas-frutas', caption: 'Bolo de camadas com frutas vermelhas', alt: 'Bolo alto de camadas vermelhas e creme, coberto de morangos, amoras e mirtilos com açúcar de confeiteiro' },
+      { img: 'doces-finos', caption: 'Doces individuais', alt: 'Doces individuais servidos em pratos brancos: um pudim no pote, um doce em forma de rosa vermelha, um de pistache e um com frutas vermelhas' },
+      { img: 'bolo-frutas-vermelhas', caption: 'Bolo com creme e frutas vermelhas', alt: 'Bolo coberto de creme branco com um anel de morangos, framboesas, amoras e mirtilos' },
+      { img: 'torta-chocolate', caption: 'Torta com cobertura de chocolate', alt: 'Torta redonda com cobertura de chocolate e camada de creme sobre base dourada' },
+      { img: 'doces-caramelizados', caption: 'Doces caramelizados com nozes', alt: 'Doces redondos com calda de caramelo brilhante e nozes no topo, lado a lado na vitrine' },
+      { img: 'taca-frutas', caption: 'Taça de frutas', alt: 'Taça de vidro com frutas picadas, morangos e mamão, ao lado de um copo de bebida com espuma' },
+    ],
+  },
+  {
+    id: 'paes-e-folhados',
+    title: 'Pães e folhados',
+    note: 'Da vitrine de pães, com os croissants em primeiro plano.',
+    items: [
+      { img: 'croissants', caption: 'Croissants', alt: 'Croissants dourados e folhados, em close' },
+      { img: 'vitrine-paes', caption: 'Pães na vitrine', alt: 'Vitrine com pães rústicos de casca escura e pãezinhos dourados ao fundo' },
+      { img: 'croissants-vitrine', caption: 'Croissants na vitrine', alt: 'Croissants enfileirados na vitrine de vidro, com folhados ao lado' },
+      { img: 'vitrine-folhados', caption: 'A vitrine de folhados', alt: 'Vitrine de vidro com fileiras de folhados e roscas pequenas' },
+    ],
+  },
+  {
+    id: 'salgados',
+    title: 'Salgados',
+    note: 'Assados, tortinhas e sanduíches quentes.',
+    items: [
+      { img: 'salgado-tomate', caption: 'Salgado assado com tomate', alt: 'Salgados de massa assada, abertos, recheados com queijo e uma rodela de tomate com orégano' },
+      { img: 'tortinhas-coloridas', caption: 'Tortinhas salgadas', alt: 'Tortinhas de massa com recheio colorido, lado a lado numa bandeja' },
+      { img: 'sanduiche-quente', caption: 'Sanduíche quente', alt: 'Sanduíche de pão rústico com queijo derretido, tomate e folhas, num prato turquesa' },
+      { img: 'tortinhas-cremosas', caption: 'Tortinhas de recheio cremoso', alt: 'Tortinhas de massa com recheio branco e cremoso, lado a lado' },
+      { img: 'sanduiche-ciabatta', caption: 'Sanduíche com chips', alt: 'Sanduíche de pão rústico com legumes grelhados e queijo, servido com chips' },
+    ],
+  },
+  {
+    id: 'pratos-e-saladas',
+    title: 'Pratos e saladas',
+    note: 'Pratos servidos no salão, nas louças azul-claras da casa.',
+    items: [
+      { img: 'prato-salmao', caption: 'Salmão com arroz e legumes', alt: 'Posta de salmão com arroz integral, brócolis e pimentão assado, com molho amarelo' },
+      { img: 'pratos-saladas', caption: 'Saladas e molhos', alt: 'Vista de cima de pratos de salada e potinhos de molho verde e vermelho' },
+      { img: 'prato-peixe', caption: 'Peixe com purê e batata palha', alt: 'Filés de peixe com purê amarelo, batata palha e molho verde num prato claro' },
+      { img: 'salada-salmao', caption: 'Salada com molho à parte', alt: 'Prato de salada de folhas roxas e verdes com um potinho de molho claro' },
+    ],
+  },
+]
+
+// Confirmed by the Instagram highlights, but with no photo on hand.
+export const alsoInHouse = ['Cafés', 'Adega', 'Ilha de frios']
+
+export const salao = {
+  wide: { img: 'salao-panorama', alt: 'Salão da Saint Tropez visto de dentro: mesas brancas, cadeiras de palhinha e a cobertura de arcos de vidro iluminada' },
+  frames: [
+    { img: 'salao-palmeiras', caption: 'Os arcos de vidro e as palmeiras do lado de fora', alt: 'Mesas e cadeiras brancas sob a cobertura de arcos de vidro, com palmeiras e prédios do lado de fora' },
+    { img: 'salao-arcos', caption: 'O salão no fim da tarde', alt: 'Salão com piso de madeira, mesas brancas e arcos de vidro, no fim da tarde' },
+    { img: 'carrinho-bolos', caption: 'O carrinho de bolos turquesa', alt: 'Carrinho turquesa em forma de triciclo com prateleiras de bolos e doces dentro do salão' },
+    { img: 'triciclo', caption: 'O triciclo da casa', alt: 'Frente de um triciclo turquesa com o logotipo da Saint Tropez, dentro do salão' },
+  ],
+}
+
+export const facade = {
+  day: { img: 'fachada-letreiro', alt: 'Fachada branca em relevo de pirâmides com o letreiro Saint Tropez confeitaria e a marquise turquesa, sob céu azul' },
+  side: { img: 'fachada-relevo', alt: 'Canto da fachada em relevo branco com o logotipo e a marquise turquesa' },
+  night: { img: 'fachada-noite', alt: 'Entrada da Saint Tropez à noite, com a cobertura de arcos iluminada' },
+}
+
+// Curated, static: photos the house published. Not a live feed.
+export const instagramPicks = ['doces-finos', 'triciclo', 'croissants-vitrine', 'bolo-frutas-vermelhas', 'fachada-relevo']
+
+// Facts deliberately left out until the house confirms them.
+export const pending = [
+  'Horário: Google diz até 23h na sexta e no sábado; a bio do Instagram diz apenas 6:00 às 22:00.',
+  'Número: Google diz 221; Waze, BaresSP e a proposta anterior diziam 211.',
+  'Ano de abertura (a proposta anterior dizia 2019, sem fonte oficial).',
+  'Estacionamento (só aparece no Waze).',
+  'Nomes oficiais de produtos, preços e cardápio.',
+  'Telefone ou WhatsApp: a casa não divulga nenhum.',
+]

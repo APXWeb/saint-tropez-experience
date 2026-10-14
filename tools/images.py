@@ -1,0 +1,76 @@
+"""Crop the house watermark out of the source photos and export AVIF + WebP sizes.
+
+Source photos (assets-src/) come from @sainttropezconfeitaria on Instagram and carry
+the house badge in the top-left corner; the crop removes that band. Run from the
+project root: python tools/images.py
+"""
+import json
+import os
+from PIL import Image, ImageOps
+
+SRC = 'assets-src'
+OUT = 'public/img'
+WIDTHS = (640, 1080, 1600)
+
+# name: (left, top, right, bottom) crop in source pixels; None keeps the full frame.
+BADGE = (0, 190, None, None)
+CROPS = {
+    'fachada-letreiro': None,
+    'fachada-relevo': None,
+    'fachada-noite': None,
+    'salao-arcos': (0, 0, 905, None),          # keeps the customer at the right out of frame
+    'salao-palmeiras': BADGE,
+    'salao-panorama': None,
+    'carrinho-bolos': BADGE,
+    'triciclo': BADGE,
+    'vitrine-folhados': BADGE,
+    'vitrine-paes': BADGE,
+    'croissants': BADGE,
+    'croissants-vitrine': BADGE,
+    'bolo-camadas-frutas': BADGE,
+    'bolo-frutas-vermelhas': BADGE,
+    'torta-chocolate': BADGE,
+    'doces-caramelizados': BADGE,
+    'doces-finos': (0, 205, None, None),       # printed menu-card header at the top
+    'taca-frutas': BADGE,
+    'salgado-tomate': BADGE,
+    'tortinhas-coloridas': BADGE,
+    'tortinhas-cremosas': BADGE,
+    'sanduiche-ciabatta': BADGE,
+    'sanduiche-quente': (0, 190, 1100, 1060),  # handle sticker at the bottom right
+    'prato-peixe': BADGE,
+    'prato-salmao': BADGE,
+    'pratos-saladas': BADGE,
+    'salada-salmao': BADGE,
+}
+
+
+def main():
+    os.makedirs(OUT, exist_ok=True)
+    manifest = {}
+    for name, box in CROPS.items():
+        im = ImageOps.exif_transpose(Image.open(os.path.join(SRC, name + '.jpg'))).convert('RGB')
+        if box:
+            l, t, r, b = box
+            im = im.crop((l, t, r or im.width, b or im.height))
+        widths = [w for w in WIDTHS if w < im.width] + [im.width]
+        widths = sorted(set(w for w in widths if w >= 480))
+        for w in widths:
+            h = round(im.height * w / im.width)
+            frame = im.resize((w, h), Image.LANCZOS) if w != im.width else im
+            frame.save(f'{OUT}/{name}-{w}.webp', 'WEBP', quality=80, method=6)
+            frame.save(f'{OUT}/{name}-{w}.avif', 'AVIF', quality=58, speed=4)
+        manifest[name] = {'w': im.width, 'h': im.height, 'sizes': widths}
+        print(name, im.size, widths)
+    with open('src/data/images.json', 'w', encoding='utf-8') as f:
+        json.dump(manifest, f, indent=1)
+
+    # Brand marks: badge for the header and icons.
+    badge = Image.open(os.path.join(SRC, 'brand', 'logo-icon.png')).convert('RGBA')
+    badge.save(f'{OUT}/selo.png')
+    for s in (32, 180, 192):
+        badge.resize((s, s), Image.LANCZOS).save(f'public/icon-{s}.png')
+
+
+if __name__ == '__main__':
+    main()

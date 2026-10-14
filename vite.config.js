@@ -1,0 +1,35 @@
+import { defineConfig } from 'vite'
+import { pathToFileURL } from 'node:url'
+import { resolve } from 'node:path'
+
+// Fills every {{key}} in index.html from src/render.js, which reads src/data/site.js.
+// The data is re-imported on each request so edits show up in dev without a restart.
+function siteData() {
+  const renderUrl = pathToFileURL(resolve('src/render.js')).href
+  return {
+    name: 'site-data',
+    transformIndexHtml: {
+      order: 'pre',
+      async handler(html) {
+        const { blocks } = await import(`${renderUrl}?t=${Date.now()}`)
+        const map = blocks()
+        return html.replace(/\{\{([\w-]+)\}\}/g, (_, key) => {
+          if (!(key in map)) throw new Error(`index.html usa {{${key}}}, que não existe em src/render.js`)
+          return map[key]
+        })
+      },
+    },
+    handleHotUpdate({ file, server }) {
+      if (/src[\\/](data[\\/]|render\.js)/.test(file)) server.ws.send({ type: 'full-reload' })
+    },
+  }
+}
+
+export default defineConfig({
+  // Relative base: the build works at /, at /<repo>/ on GitHub Pages, or from any subfolder.
+  base: './',
+  plugins: [siteData()],
+  server: { port: 5190 },
+  preview: { port: 4176 },
+  build: { target: 'es2020', assetsInlineLimit: 0 },
+})

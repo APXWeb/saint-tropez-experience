@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-13T21:30:00-03:00",
+  "title": "Design System: Saint Tropez Confeitaria",
+  "extensions": {
+    "colorMeta": {
+      "turquoise-canopy": { "role": "primary", "displayName": "Canopy Turquoise", "cssVar": "--turq", "tonalRamp": ["oklch(15% 0.03 189)", "oklch(25% 0.05 189)", "oklch(35% 0.07 189)", "oklch(45% 0.09 189)", "oklch(55% 0.11 189)", "oklch(68% 0.12 189)", "oklch(80% 0.08 189)", "oklch(95% 0.03 189)"] },
+      "turquoise-lit": { "role": "primary", "displayName": "Lit Turquoise", "cssVar": "--turq-hi", "tonalRamp": ["oklch(15% 0.03 188)", "oklch(25% 0.05 188)", "oklch(35% 0.07 188)", "oklch(45% 0.09 188)", "oklch(55% 0.11 188)", "oklch(72% 0.12 188)", "oklch(82% 0.08 188)", "oklch(95% 0.03 188)"] },
+      "turquoise-fascia": { "role": "primary", "displayName": "Fascia Turquoise", "cssVar": "--turq-fascia", "tonalRamp": ["oklch(15% 0.03 189)", "oklch(25% 0.05 189)", "oklch(35% 0.07 189)", "oklch(45% 0.08 189)", "oklch(55% 0.09 189)", "oklch(65% 0.09 189)", "oklch(80% 0.06 189)", "oklch(95% 0.02 189)"] },
+      "turquoise-ink": { "role": "primary", "displayName": "Legible Turquoise", "cssVar": "--turq-ink", "tonalRamp": ["oklch(15% 0.03 190)", "oklch(25% 0.05 190)", "oklch(35% 0.06 190)", "oklch(48% 0.08 190)", "oklch(55% 0.08 190)", "oklch(65% 0.08 190)", "oklch(80% 0.05 190)", "oklch(95% 0.02 190)"] },
+      "cocoa-lettering": { "role": "secondary", "displayName": "Cocoa Lettering", "cssVar": "--cocoa", "tonalRamp": ["oklch(15% 0.02 40)", "oklch(23% 0.025 40)", "oklch(35% 0.03 40)", "oklch(45% 0.03 40)", "oklch(55% 0.03 40)", "oklch(65% 0.025 40)", "oklch(80% 0.015 40)", "oklch(95% 0.005 40)"] },
+      "cocoa-soft": { "role": "secondary", "displayName": "Soft Cocoa", "cssVar": "--cocoa-2", "tonalRamp": ["oklch(15% 0.02 45)", "oklch(25% 0.025 45)", "oklch(36% 0.03 45)", "oklch(45% 0.03 45)", "oklch(55% 0.03 45)", "oklch(65% 0.025 45)", "oklch(80% 0.015 45)", "oklch(95% 0.005 45)"] },
+      "seal-gold": { "role": "tertiary", "displayName": "Seal Gold", "cssVar": "--gold", "tonalRamp": ["oklch(15% 0.03 80)", "oklch(25% 0.05 80)", "oklch(35% 0.07 80)", "oklch(45% 0.08 80)", "oklch(55% 0.09 80)", "oklch(68% 0.1 80)", "oklch(80% 0.07 80)", "oklch(95% 0.02 80)"] },
+      "relief-wall": { "role": "neutral", "displayName": "Relief Wall", "cssVar": "--relief", "tonalRamp": ["oklch(15% 0.005 140)", "oklch(25% 0.005 140)", "oklch(35% 0.005 140)", "oklch(45% 0.005 140)", "oklch(55% 0.005 140)", "oklch(70% 0.005 140)", "oklch(87% 0.006 140)", "oklch(95% 0.005 140)"] },
+      "relief-lit": { "role": "neutral", "displayName": "Lit Relief", "cssVar": "--relief-hi", "tonalRamp": ["oklch(15% 0.004 120)", "oklch(25% 0.004 120)", "oklch(35% 0.004 120)", "oklch(45% 0.004 120)", "oklch(55% 0.004 120)", "oklch(70% 0.004 120)", "oklch(85% 0.004 120)", "oklch(98% 0.004 120)"] },
+      "relief-shade": { "role": "neutral", "displayName": "Shaded Relief", "cssVar": "--relief-lo", "tonalRamp": ["oklch(15% 0.007 155)", "oklch(25% 0.007 155)", "oklch(35% 0.007 155)", "oklch(45% 0.007 155)", "oklch(55% 0.007 155)", "oklch(70% 0.007 155)", "oklch(88% 0.008 155)", "oklch(95% 0.005 155)"] },
+      "night-wall": { "role": "neutral", "displayName": "Night Wall", "cssVar": "--night", "tonalRamp": ["oklch(15% 0.025 200)", "oklch(22% 0.025 200)", "oklch(35% 0.03 200)", "oklch(45% 0.03 200)", "oklch(55% 0.03 200)", "oklch(65% 0.03 200)", "oklch(80% 0.02 200)", "oklch(95% 0.01 200)"] },
+      "night-panel": { "role": "neutral", "displayName": "Night Panel", "cssVar": "--night-2", "tonalRamp": ["oklch(15% 0.03 192)", "oklch(28% 0.035 192)", "oklch(35% 0.035 192)", "oklch(45% 0.035 192)", "oklch(55% 0.035 192)", "oklch(65% 0.03 192)", "oklch(80% 0.02 192)", "oklch(95% 0.01 192)"] },
+      "night-floor": { "role": "neutral", "displayName": "Night Floor", "cssVar": null, "note": "Hardcoded #081617 in the footer and footer seal ring; not yet a custom property.", "tonalRamp": ["oklch(18% 0.02 200)", "oklch(25% 0.02 200)", "oklch(35% 0.025 200)", "oklch(45% 0.025 200)", "oklch(55% 0.025 200)", "oklch(65% 0.02 200)", "oklch(80% 0.015 200)", "oklch(95% 0.005 200)"] },
+      "night-ink": { "role": "neutral", "displayName": "Night Ink", "cssVar": "--night-ink", "tonalRamp": ["oklch(15% 0.01 175)", "oklch(25% 0.01 175)", "oklch(35% 0.01 175)", "oklch(45% 0.01 175)", "oklch(55% 0.01 175)", "oklch(70% 0.01 175)", "oklch(85% 0.01 175)", "oklch(95% 0.008 175)"] },
+      "night-muted": { "role": "neutral", "displayName": "Night Muted", "cssVar": "--night-muted", "tonalRamp": ["oklch(15% 0.015 180)", "oklch(25% 0.015 180)", "oklch(35% 0.02 180)", "oklch(45% 0.02 180)", "oklch(55% 0.02 180)", "oklch(65% 0.02 180)", "oklch(77% 0.02 180)", "oklch(95% 0.008 180)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "cssVar": "--t-display", "purpose": "The hero line only, max 11ch, revealed line by line." },
+      "headline": { "displayName": "Headline", "cssVar": "--t-h2", "purpose": "Section titles; one-line variants for the street name and Instagram handle." },
+      "title": { "displayName": "Title", "cssVar": "--t-h3", "purpose": "Vitrine shelf names; Gloock lettering for house-rules and also-in-house lists." },
+      "lead": { "displayName": "Lead", "cssVar": "--t-lead", "purpose": "Paragraph under a heading, 40 to 52ch." },
+      "body": { "displayName": "Body", "cssVar": "--t-body", "purpose": "Running text; 1rem under 760px." },
+      "label": { "displayName": "Label", "cssVar": "--t-small", "purpose": "Captions, status, notes, footer column headings." },
+      "control": { "displayName": "Control", "purpose": "Buttons, tabs and nav links." }
+    },
+    "shadows": [
+      { "name": "window", "value": "0 34px 60px -34px rgba(42, 26, 20, 0.45), 0 10px 22px -16px rgba(42, 26, 20, 0.3)", "purpose": "Every photo window and frame on the lit wall (--window-shadow)." },
+      { "name": "window-reveal", "value": "inset 0 0 0 10px #f8f9f6, inset 0 14px 24px -10px rgba(42, 26, 20, 0.35)", "purpose": "White mat and soffit shadow inside an arch window." },
+      { "name": "canopy", "value": "inset 0 -4px 0 #08807c, 0 14px 24px -18px rgba(8, 64, 62, 0.8)", "purpose": "Primary button: fascia edge plus soft teal cast." },
+      { "name": "canopy-hover", "value": "inset 0 -4px 0 #08807c, 0 20px 28px -18px rgba(8, 64, 62, 0.85)", "purpose": "Primary button lifted 2px." },
+      { "name": "canopy-active", "value": "inset 0 -2px 0 #08807c, 0 8px 14px -12px rgba(8, 64, 62, 0.8)", "purpose": "Primary button pressed 2px." },
+      { "name": "plaque", "value": "0 1px 0 rgba(42, 26, 20, 0.08), 0 18px 34px -26px rgba(42, 26, 20, 0.45)", "purpose": "Hero status plaque." },
+      { "name": "shelf-piece", "value": "0 30px 50px -36px rgba(20, 40, 38, 0.9)", "purpose": "Vitrine photos on turquoise." },
+      { "name": "night-window", "value": "0 30px 60px -30px rgba(0, 0, 0, 0.7)", "purpose": "Photos on the night wall; lightbox image uses 0 40px 80px -40px rgba(0,0,0,0.8)." },
+      { "name": "seal-ring", "value": "0 0 0 2px #f8f9f6, 0 0 0 3px #b8924a", "purpose": "Gold hairline ring around the round seal (inner ring #081617 in the footer)." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Default for every CSS state change (--ease-out); GSAP equivalent expo.out." },
+      { "name": "ease-in-out", "value": "cubic-bezier(0.65, 0, 0.35, 1)", "purpose": "Mobile menu closing (--ease-in-out); GSAP expo.inOut for the hero arch opening." },
+      { "name": "state-fast", "value": "0.25s", "purpose": "Buttons." },
+      { "name": "state", "value": "0.3s to 0.45s", "purpose": "Tabs, header, nav underline, icon nudges." },
+      { "name": "reveal", "value": "clip-path inset(18% 0 0 0) to inset(0), 1.3s expo.out; image scale 1.14 to 1 over 1.6s", "purpose": "Windows and frames entering the viewport." },
+      { "name": "hero-intro", "value": "2.2s sunrise; title lines rise from 110% with 0.09s stagger; arch opens from the bottom over 1.5s", "purpose": "Load sequence." },
+      { "name": "sun", "value": "scroll-linked azimuth, elevation and warmth on the relief canvas; night tile lit from below (az 90, el 16) on the visit block", "purpose": "The signature: the day crossing the facade." },
+      { "name": "salao-arch", "value": "pinned 105% of viewport, scrub 0.6; arch clip-path inset(12% 32% 0 32% round 18vw 18vw 0 0) widens to full screen", "purpose": "The arch that opens onto the salão." },
+      { "name": "smooth-scroll", "value": "Lenis lerp 0.11, wheelMultiplier 0.95", "purpose": "Page scroll." },
+      { "name": "reduced-motion", "value": "transitions and animations to 0.01ms; status ping removed; pinned and scrubbed scenes skipped", "purpose": "prefers-reduced-motion: reduce." }
+    ],
+    "breakpoints": [
+      { "name": "xs", "value": "520px" },
+      { "name": "sm", "value": "760px" },
+      { "name": "foot", "value": "860px" },
+      { "name": "md", "value": "960px" },
+      { "name": "rail", "value": "1024px and min-height 621px" },
+      { "name": "lg", "value": "1180px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Canopy Button",
+      "kind": "button",
+      "refersTo": "button-canopy",
+      "description": "The primary action (Como chegar): a turquoise canopy with its fascia edge.",
+      "html": "<a class=\"ds-btn ds-btn-canopy\" href=\"#\">Como chegar <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"6\" cy=\"18\" r=\"2.4\"/><circle cx=\"18\" cy=\"6\" r=\"2.4\"/><path d=\"M8.4 18H15a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h6.6\"/></svg></a>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.65rem; min-height: 52px; padding: 0.85rem 1.45rem; font-family: var(--f-ui, 'Figtree', system-ui, sans-serif); font-size: 1rem; font-weight: 650; letter-spacing: 0.005em; line-height: 1.2; text-decoration: none; border-radius: 3px; border: 0; transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn svg { width: 1.25em; height: 1.25em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-canopy { background: var(--turq, #0cb1ad); color: var(--cocoa, #2a1a14); padding-bottom: calc(0.85rem + 4px); box-shadow: inset 0 -4px 0 var(--turq-fascia, #08807c), 0 14px 24px -18px rgba(8, 64, 62, 0.8); } .ds-btn-canopy:hover { background: var(--turq-hi, #19c2bd); transform: translateY(-2px); box-shadow: inset 0 -4px 0 var(--turq-fascia, #08807c), 0 20px 28px -18px rgba(8, 64, 62, 0.85); } .ds-btn-canopy:hover svg { transform: translateY(-2px); } .ds-btn-canopy:active { transform: translateY(2px); box-shadow: inset 0 -2px 0 var(--turq-fascia, #08807c), 0 8px 14px -12px rgba(8, 64, 62, 0.8); } .ds-btn-canopy:focus-visible { outline: 2px solid var(--cocoa, #2a1a14); outline-offset: 3px; }"
+    },
+    {
+      "name": "Line Button",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Secondary action on the lit wall: cocoa outline that fills on hover.",
+      "html": "<a class=\"ds-btn-line\" href=\"#\">Ver a vitrine <svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h13M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-btn-line { display: inline-flex; align-items: center; gap: 0.65rem; min-height: 52px; padding: 0.85rem 1.45rem; font-family: var(--f-ui, 'Figtree', system-ui, sans-serif); font-size: 1rem; font-weight: 650; line-height: 1.2; text-decoration: none; border-radius: 3px; color: var(--cocoa, #2a1a14); background: transparent; box-shadow: inset 0 0 0 1.5px var(--cocoa, #2a1a14); transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-line svg { width: 1.25em; height: 1.25em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-line:hover { background: var(--cocoa, #2a1a14); color: var(--relief-hi, #f8f9f6); } .ds-btn-line:hover svg { transform: translateX(4px); } .ds-btn-line:focus-visible { outline: 2px solid var(--cocoa, #2a1a14); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Button (night)",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action on the night wall.",
+      "html": "<div class=\"ds-night\"><a class=\"ds-btn-ghost\" href=\"#\">Abrir no Waze</a></div>",
+      "css": ".ds-night { background: var(--night, #0c1f21); padding: 24px; } .ds-btn-ghost { display: inline-flex; align-items: center; min-height: 52px; padding: 0.85rem 1.45rem; font-family: var(--f-ui, 'Figtree', system-ui, sans-serif); font-size: 1rem; font-weight: 650; line-height: 1.2; text-decoration: none; border-radius: 3px; color: var(--night-ink, #e9f1ef); background: transparent; box-shadow: inset 0 0 0 1.5px rgba(233, 241, 239, 0.45); transition: box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-ghost:hover { box-shadow: inset 0 0 0 1.5px var(--night-ink, #e9f1ef); background: rgba(233, 241, 239, 0.08); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--turq-hi, #19c2bd); outline-offset: 3px; }"
+    },
+    {
+      "name": "Shelf Tab",
+      "kind": "chip",
+      "refersTo": "shelf-tab",
+      "description": "Vitrine category tab on turquoise, with a count bubble.",
+      "html": "<div class=\"ds-turq\"><a class=\"ds-tab\" href=\"#\" aria-current=\"true\">Bolos <span class=\"ds-tab-count\">6</span></a> <a class=\"ds-tab\" href=\"#\">Salgados <span class=\"ds-tab-count\">5</span></a></div>",
+      "css": ".ds-turq { background: var(--turq, #0cb1ad); color: var(--cocoa, #2a1a14); padding: 24px; display: flex; gap: 0.75rem; } .ds-tab { display: inline-flex; align-items: center; gap: 0.6rem; min-height: 44px; padding: 0.5rem 0.75rem 0.5rem 1rem; border-radius: 999px; box-shadow: inset 0 0 0 1.5px var(--cocoa, #2a1a14); color: inherit; text-decoration: none; font-family: var(--f-ui, 'Figtree', system-ui, sans-serif); font-weight: 650; font-size: 0.95rem; transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-tab-count { display: inline-grid; place-items: center; min-width: 1.6rem; height: 1.6rem; padding: 0 0.35rem; border-radius: 999px; background: var(--cocoa, #2a1a14); color: var(--turq, #0cb1ad); font-size: 0.8rem; font-variant-numeric: tabular-nums; } .ds-tab:hover, .ds-tab[aria-current='true'] { background: var(--cocoa, #2a1a14); color: var(--turq-hi, #19c2bd); } .ds-tab:hover .ds-tab-count, .ds-tab[aria-current='true'] .ds-tab-count { background: var(--turq, #0cb1ad); color: var(--cocoa, #2a1a14); } .ds-tab:focus-visible { outline: 2px solid var(--cocoa, #2a1a14); outline-offset: 3px; }"
+    },
+    {
+      "name": "Status Plaque",
+      "kind": "card",
+      "refersTo": "status-plaque",
+      "description": "Live open status and address, a plaque on the wall with a gold edge.",
+      "html": "<div class=\"ds-plaque\"><p class=\"ds-status\"><span class=\"ds-dot\"></span>Aberto agora, fecha às 22h</p><p class=\"ds-addr\">R. Piracema, 221, Santa Teresinha</p></div>",
+      "css": ".ds-plaque { display: inline-grid; gap: 0.35rem; padding: 1rem 1.5rem 1rem 1rem; background: var(--relief-hi, #f8f9f6); border-left: 1px solid var(--gold, #b8924a); box-shadow: 0 1px 0 rgba(42, 26, 20, 0.08), 0 18px 34px -26px rgba(42, 26, 20, 0.45); color: var(--cocoa, #2a1a14); font-family: var(--f-ui, 'Figtree', system-ui, sans-serif); } .ds-status { margin: 0; display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 600; font-size: 0.9375rem; line-height: 1.3; } .ds-dot { position: relative; width: 9px; height: 9px; border-radius: 50%; background: var(--turq, #0cb1ad); } .ds-dot::after { content: ''; position: absolute; inset: -5px; border-radius: 50%; border: 1.5px solid var(--turq, #0cb1ad); animation: ds-ping 2.6s cubic-bezier(0.16, 1, 0.3, 1) infinite; } @keyframes ds-ping { from { transform: scale(0.4); opacity: 0.9; } to { transform: scale(1.4); opacity: 0; } } .ds-addr { margin: 0; font-size: 0.9375rem; color: var(--cocoa-2, #4e3a31); padding-left: calc(9px + 0.6rem); }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Seal, Gloock name with the brand lockup's spaced lowercase line, and links with a drawn underline.",
+      "html": "<header class=\"ds-top\"><a class=\"ds-brand\" href=\"#\"><span class=\"ds-seal\"></span><span class=\"ds-brand-text\"><span class=\"ds-brand-name\">Saint Tropez</span><span class=\"ds-brand-sub\">confeitaria</span></span></a><nav><ul class=\"ds-nav\"><li><a href=\"#\" aria-current=\"true\">Vitrine</a></li><li><a href=\"#\">Salão</a></li><li><a href=\"#\">A casa</a></li><li><a href=\"#\">Visite</a></li></ul></nav></header>",
+      "css": ".ds-top { display: flex; align-items: center; gap: 2rem; height: 76px; padding: 0 24px; background: rgba(248, 249, 246, 0.94); box-shadow: 0 1px 0 rgba(42, 26, 20, 0.1); color: var(--cocoa, #2a1a14); font-family: var(--f-ui, 'Figtree', system-ui, sans-serif); } .ds-brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit; margin-right: auto; } .ds-seal { width: 44px; height: 44px; border-radius: 50%; background: var(--turq, #0cb1ad); box-shadow: 0 0 0 2px var(--relief-hi, #f8f9f6), 0 0 0 3px var(--gold, #b8924a); } .ds-brand-text { display: flex; flex-direction: column; line-height: 1; } .ds-brand-name { font-family: var(--f-display, 'Gloock', serif); font-size: 1.45rem; letter-spacing: -0.01em; } .ds-brand-sub { font-size: 0.7rem; font-weight: 650; letter-spacing: 0.34em; color: var(--turq-ink, #066b68); margin-top: 0.3rem; } .ds-nav { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; } .ds-nav a { position: relative; display: block; padding: 0.5rem 0; font-weight: 600; font-size: 0.975rem; color: inherit; text-decoration: none; } .ds-nav a::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0.2rem; height: 1.5px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav a:hover::after, .ds-nav a[aria-current='true']::after { transform: scaleX(1); transform-origin: left; } .ds-nav a:focus-visible { outline: 2px solid var(--cocoa, #2a1a14); outline-offset: 3px; }"
+    },
+    {
+      "name": "Arch Window",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Signature: a photograph set into the wall as an arch-topped window with a white mat and cast shadow.",
+      "html": "<figure class=\"ds-arch\"><div class=\"ds-arch-pic\"></div></figure>",
+      "css": ".ds-arch { margin: 0; width: 240px; position: relative; aspect-ratio: 4 / 5; border-radius: 50% 50% 0 0 / 40% 40% 0 0; overflow: hidden; background: linear-gradient(160deg, #9fc7c3, #2f5552); box-shadow: 0 34px 60px -34px rgba(42, 26, 20, 0.45), 0 10px 22px -16px rgba(42, 26, 20, 0.3); } .ds-arch::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; box-shadow: inset 0 0 0 10px var(--relief-hi, #f8f9f6), inset 0 14px 24px -10px rgba(42, 26, 20, 0.35); } .ds-arch-pic { width: 100%; height: 100%; transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1); } .ds-arch:hover .ds-arch-pic { transform: scale(1.045); }"
+    },
+    {
+      "name": "Map Loader",
+      "kind": "card",
+      "refersTo": "map-load",
+      "description": "Night-wall panel that loads the Google map on request.",
+      "html": "<div class=\"ds-night-2\"><button class=\"ds-map\" type=\"button\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z\"/><circle cx=\"12\" cy=\"9.5\" r=\"2.6\"/></svg><span class=\"ds-map-text\"><strong>Ver o mapa aqui</strong><span>Carrega o Google Maps</span></span><span class=\"ds-map-go\">Carregar</span></button></div>",
+      "css": ".ds-night-2 { background: var(--night, #0c1f21); padding: 24px; } .ds-map { display: flex; align-items: center; gap: 0.9rem; width: 100%; min-height: 72px; padding: 0.9rem 1.1rem; border: 0; border-radius: 3px; background: var(--night-2, #12302f); color: var(--night-ink, #e9f1ef); text-align: left; font: inherit; font-family: var(--f-ui, 'Figtree', system-ui, sans-serif); cursor: pointer; box-shadow: inset 0 0 0 1.5px rgba(233, 241, 239, 0.22); transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-map svg { width: 1.5em; height: 1.5em; flex: none; fill: none; stroke: var(--turq-hi, #19c2bd); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; } .ds-map-text { display: grid; gap: 0.1rem; line-height: 1.3; } .ds-map-text strong { font-weight: 650; } .ds-map-text span { font-size: 0.875rem; color: var(--night-muted, #a7bdb9); } .ds-map-go { margin-left: auto; font-size: 0.875rem; font-weight: 650; color: var(--turq-hi, #19c2bd); } .ds-map:hover { box-shadow: inset 0 0 0 1.5px var(--turq-hi, #19c2bd); } .ds-map:focus-visible { outline: 2px solid var(--turq-hi, #19c2bd); outline-offset: 3px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Facade on Rua Piracema",
+    "overview": "The page is the building. Its ground is the shop's white wall of diamond pyramids, drawn live on a fixed canvas and lit by a sun that crosses it as the visitor scrolls, from a grazing dawn light at the top to night at the address block. Everything else is set into that wall the way the real facade carries its fittings: a turquoise canopy for the main action, cocoa lettering for every word, photographs framed as windows (arch-topped, square, or plain), and a thin gold ring around the seal.\n\nDensity is low and theatrical. Sections are separated by changes of material rather than by rules: the lit wall (hero, salão frames, casa, Instagram), the turquoise field of the vitrine, the full-bleed salão photograph revealed through a widening arch, and the night wall of the visit block and footer. Type is large and quiet; the serif speaks in one weight only, and the sans does the practical work.\n\nMotion is about light and openings, not about bouncing content: the sun's position, clip-path reveals that open from the bottom like a shutter, images settling from a slight zoom, and a pinned horizontal shelf for the vitrine on desktop. Every motion path has a still equivalent under reduced motion, and the page renders fully without JavaScript.",
+    "keyCharacteristics": [
+      "A live, sun-lit relief canvas as the page ground; no flat day background.",
+      "Turquoise used as fields and the canopy button, with cocoa type on it.",
+      "Photos as windows set into the wall, with cocoa-tinted cast shadows.",
+      "Gloock at 400 for all display and heading type; Figtree for UI and body.",
+      "Day-to-night progression down the page, ending on the night wall."
+    ],
+    "rules": [
+      { "name": "The Canopy Rule", "body": "Full turquoise is a field or a canopy, never text on the white wall. On white, turquoise text is Legible Turquoise; on turquoise, text is cocoa.", "section": "colors" },
+      { "name": "The Gold Thread Rule", "body": "Gold is a 1px line or a status dot. It is never a fill, a text color, or a button.", "section": "colors" },
+      { "name": "The Day to Night Rule", "body": "The page moves from lit wall to turquoise to night. Night colors belong to the visit block, the footer, the salão overlay and the lightbox; they do not appear above the visit block as accents.", "section": "colors" },
+      { "name": "The One Weight Rule", "body": "Gloock is set at 400 only. Emphasis in display type comes from size and position, never from bold or italic.", "section": "typography" },
+      { "name": "The Sign and Counter Rule", "body": "Gloock never sets a button, a label or a form value (the large links of the mobile menu are its one clickable use); Figtree never sets a section title.", "section": "typography" },
+      { "name": "The Cast Light Rule", "body": "A shadow means an object is set into or standing off the wall. Text, flat panels and section backgrounds carry no shadow; ring and inset shadows draw outlines and edges, not elevation.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do let the relief canvas be the ground of every day section, and wash it with a soft lit-relief radial behind long copy so the pattern never competes with words.",
+      "Do set every photograph as a window: arch, matted square, or plain rectangle, with the window shadow on the lit wall.",
+      "Do keep the primary action a canopy button: turquoise, cocoa text, 4px fascia, 3px corners.",
+      "Do set headings in Gloock 400 with negative tracking and `text-wrap: balance`, and everything interactive in Figtree 600 to 650.",
+      "Do carry the day-to-night order: wall, turquoise, salão, night.",
+      "Do use the out-expo curve (cubic-bezier(0.16, 1, 0.3, 1)) for state changes and clip-path openings from the bottom for reveals, with a still equivalent under reduced motion.",
+      "Do draw icons as inline stroked SVG (1.8 stroke, round caps and joins)."
+    ],
+    "donts": [
+      "Don't warm the wall toward cream or beige; the ground is a cool white with a green-grey shade.",
+      "Don't use turquoise-canopy as text on the white wall, or gold as anything but a hairline or a status dot.",
+      "Don't set Gloock in bold or italic, or use it for buttons, labels or captions.",
+      "Don't add a second accent color or any background pattern other than the relief. Gradients appear only as light: the wash behind hero copy, the scrim under salão text, the glass glint on vitrine pieces.",
+      "Don't use hard offset shadows or glows; shadows are soft and cast downward.",
+      "Don't redraw or imitate the script wordmark; use the supplied seal and lockup assets, and reserve the wide-tracked lowercase \"confeitaria\" for the brand lockup, never as a section label.",
+      "Don't use thin or monospace faces."
+    ]
+  }
+}
