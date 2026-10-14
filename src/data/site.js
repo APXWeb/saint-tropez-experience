@@ -1,6 +1,6 @@
 // Single source of truth for every fact the site shows about Saint Tropez Confeitaria.
-// Each block names where it was checked. Anything not confirmed stays out of the page
-// and is listed under `pending` so the owners can validate it.
+// Each block names where it was checked. Anything not confirmed stays out of the page and
+// lives in src/data/internal.js (reference only, never imported by the site).
 // Used at build time (vite.config.js renders it into index.html) and at runtime (main.js).
 
 export const checkedOn = '2026-10-13'
@@ -11,9 +11,11 @@ export const site = {
   // Instagram bio, checked 2026-10-13.
   tagline: 'Um novo conceito em confeitaria',
 
-  // Google Business profile, checked 2026-10-13. Waze and BaresSP list nº 211; the
-  // Google profile (place id 0x95e8081e2e94cc) says 221 and is the one used here.
+  // Google Business profile, checked 2026-10-13 (place id 0x95e8081e2e94cc): nº 221.
+  // NOT definitively validated: the old proposal, the company registry, Waze and BaresSP
+  // say nº 211. Shown as 221 until the house confirms; see internal.js.
   address: {
+    validated: false,
     street: 'R. Piracema, 221',
     streetLong: 'Rua Piracema, 221',
     district: 'Santa Teresinha',
@@ -37,8 +39,8 @@ export const site = {
     apx: 'https://apxweb.github.io/apex-web/',
   },
 
-  // Google Business profile, checked 2026-10-13. Index 0 = Sunday.
-  // The Instagram bio only says "6:00 às 22:00"; pending confirmation with the house.
+  // Google Business profile, checked 2026-10-13 and matching the survey sent by the user
+  // on 2026-10-13. Index 0 = Sunday. The Instagram bio only says "6:00 às 22:00".
   hours: [
     { day: 'Domingo', short: 'Dom', open: 6, close: 22 },
     { day: 'Segunda', short: 'Seg', open: 6, close: 22 },
@@ -133,13 +135,3 @@ export const facade = {
 
 // Curated, static: photos the house published. Not a live feed.
 export const instagramPicks = ['doces-finos', 'triciclo', 'croissants-vitrine', 'bolo-frutas-vermelhas', 'fachada-relevo']
-
-// Facts deliberately left out until the house confirms them.
-export const pending = [
-  'Horário: Google diz até 23h na sexta e no sábado; a bio do Instagram diz apenas 6:00 às 22:00.',
-  'Número: Google diz 221; Waze, BaresSP e a proposta anterior diziam 211.',
-  'Ano de abertura (a proposta anterior dizia 2019, sem fonte oficial).',
-  'Estacionamento (só aparece no Waze).',
-  'Nomes oficiais de produtos, preços e cardápio.',
-  'Telefone ou WhatsApp: a casa não divulga nenhum.',
-]

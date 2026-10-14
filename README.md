@@ -18,7 +18,8 @@ npm run test:e2e   # Playwright, desktop e celular (faz o build antes)
 
 | Caminho | O quê |
 |---|---|
-| `src/data/site.js` | **Todos os fatos**: endereço, horários, links, regras da casa, legendas, pendências. Corrija aqui. |
+| `src/data/site.js` | **Todos os fatos exibidos**: endereço, horários, links, regras da casa, legendas. Corrija aqui. |
+| `src/data/internal.js` | **Referência interna, nunca exibida**: divergência do endereço, ano de abertura, estacionamento, cardápio histórico e pendências. Nenhum arquivo importa este módulo. |
 | `src/render.js` | Transforma os dados em HTML no build (`{{chave}}` no `index.html`). |
 | `index.html` | Estrutura da página. |
 | `src/styles/main.css` | Design system (tokens no `:root`) e seções. |
@@ -39,12 +40,14 @@ Para trocar ou acrescentar uma foto: coloque o JPG em `assets-src/`, registre o 
 
 ### Pendente de validação com a casa
 
-Listado também em `pending`, no fim de `src/data/site.js`:
+Registrado em `src/data/internal.js` (fora do site):
 
-- Horário: o Google diz até 23h na sexta e no sábado; a bio do Instagram diz só "6:00 às 22:00".
-- Número: o Google diz 221; Waze, BaresSP e a proposta anterior diziam 211.
-- Ano de abertura, estacionamento, nomes oficiais de produtos, preços e cardápio: ficaram de fora.
-- Telefone ou WhatsApp: a casa não divulga nenhum, então o site não tem.
+- **Endereço**: o site mostra nº 221 (perfil do Google), mas o site antigo, o cadastro empresarial (CNPJ), o Waze e o BaresSP indicam 211. Não está validado até a casa confirmar.
+- **Horário**: o Google e o levantamento de 13/10/2026 dizem seg a qui e dom 6h às 22h, sex e sáb 6h às 23h (é o que o site mostra); a bio do Instagram diz só "6:00 às 22:00".
+- **Ano de abertura**: uma matéria fala em 2020 e o CNPJ é de 2019. Não aparece no site.
+- **Estacionamento**: uma listagem indica estacionamento para clientes; não se sabe se é gratuito nem se há manobrista. Não aparece no site.
+- **Cardápio histórico**: 21 itens vistos em cardápios antigos enviados por usuários (Café Monaco, Canoa Saint Tropez, Torrada Brioche Saint Tropez etc.). Guardados só como referência; os preços desses cardápios são antigos e não foram registrados nem exibidos.
+- **Telefone ou WhatsApp**: a casa não divulga nenhum, então o site não tem.
 
 ## Publicação
 
