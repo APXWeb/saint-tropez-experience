@@ -35,6 +35,7 @@
           <li><a href="#vitrine">Vitrine</a></li>
           <li><a href="#salao">O salão</a></li>
           <li><a href="#casa">A casa</a></li>
+          <li><a href="#reserva">Reserva</a></li>
           <li><a href="#instagram">Instagram</a></li>
           <li><a href="#visite">Visite</a></li>
         </ul>
@@ -52,6 +53,7 @@
         <li><a href="#vitrine" data-menu-link>Vitrine</a></li>
         <li><a href="#salao" data-menu-link>O salão</a></li>
         <li><a href="#casa" data-menu-link>A casa</a></li>
+        <li><a href="#reserva" data-menu-link>Reserva</a></li>
         <li><a href="#instagram" data-menu-link>Instagram</a></li>
         <li><a href="#visite" data-menu-link>Visite</a></li>
       </ul>
@@ -123,6 +125,18 @@
       </div>
     </section>
 
+    <!-- Reserva: prévia para apresentar à casa (a casa hoje não faz reservas) -->
+    <section class="reserva" id="reserva" aria-labelledby="reserva-t">
+      <div class="reserva-head">
+        <h2 id="reserva-t" class="display">Reserve uma mesa no salão</h2>
+        <p class="reserva-lead">Escolha o dia, o horário e quantas pessoas vêm. O pedido sai pronto para o WhatsApp, e a confirmação chega por lá.</p>
+        <p class="reserva-demo" role="note"><strong>Prévia para a Saint Tropez.</strong> Hoje a casa não faz reservas: este formulário mostra como funcionaria. Nesta demonstração o pedido vai para o WhatsApp provisório da APX Web, {{booking-whatsapp}}.</p>
+      </div>
+      <div class="reserva-app" data-booking>
+        <noscript><p class="reserva-noscript">O formulário de reserva precisa de JavaScript.</p></noscript>
+      </div>
+    </section>
+
     <!-- Instagram: curadoria estática -->
     <section class="insta" id="instagram" aria-labelledby="insta-t">
       <div class="insta-head">
@@ -185,6 +199,7 @@
           <li><a href="#vitrine">Vitrine</a></li>
           <li><a href="#salao">O salão</a></li>
           <li><a href="#casa">A casa</a></li>
+          <li><a href="#reserva">Reserva</a></li>
           <li><a href="{{instagram}}" target="_blank" rel="noopener">Instagram</a></li>
         </ul>
       </nav>

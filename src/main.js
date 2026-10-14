@@ -8,6 +8,7 @@ import Lenis from 'lenis'
 import { createRelief, sunAt } from './js/relief.js'
 import { initStatus } from './js/status.js'
 import { initLightbox } from './js/lightbox.js'
+import { initBooking } from './js/booking.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -17,6 +18,8 @@ const $ = (s, el = document) => el.querySelector(s)
 const $$ = (s, el = document) => [...el.querySelectorAll(s)]
 
 initStatus()
+// Before any scroll math: the form adds height to the page.
+initBooking()
 
 /* Scroll: Lenis drives ScrollTrigger; reduced motion keeps the native scroll. */
 let lenis = null

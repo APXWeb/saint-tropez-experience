@@ -14,6 +14,7 @@ WIDTHS = (640, 1080, 1600)
 
 # name: (left, top, right, bottom) crop in source pixels; None keeps the full frame.
 BADGE = (0, 190, None, None)
+SHOT = (0, 115, None, None)
 CROPS = {
     'fachada-letreiro': None,
     'fachada-relevo': None,
@@ -42,6 +43,29 @@ CROPS = {
     'prato-salmao': BADGE,
     'pratos-saladas': BADGE,
     'salada-salmao': BADGE,
+    # Screenshots of the house's Instagram sent by the user on 2026-10-14 (~850 px):
+    # the badge band is 115 px tall at that size.
+    'folhado-creme': None,                     # no badge in this one
+    'doce-urso': SHOT,
+    'fatia-bolo-chocolate': SHOT,
+    'paes-dourados': SHOT,
+    'prato-carne': SHOT,
+    'salmao-cogumelos': SHOT,
+    'bebida-morango': SHOT,
+    'croissants-acucar': SHOT,
+    'folhados-coracao': SHOT,
+    'sanduiche-salmao': SHOT,
+    'salao-vidro': SHOT,
+    'salao-palmeira': SHOT,
+    'quiche-tomate': SHOT,
+    'torrada-presunto': SHOT,
+    'cafe-espuma': SHOT,
+    'crepe-gratinado': SHOT,
+    'fachada-inteira': SHOT,
+    'coxinhas': SHOT,
+    'balcao-vitrine': SHOT,
+    'pizza-presunto': SHOT,
+    'adega-maquinas': SHOT,
 }
 
 

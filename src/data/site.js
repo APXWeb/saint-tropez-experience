@@ -60,6 +60,21 @@ export const site = {
 
   // Instagram story highlights, checked 2026-10-13.
   highlights: ['Clientes', 'Adega', 'Bolos e doces', 'Cafés', 'Ilha de frios', 'Localização'],
+
+  // Reservation DEMO, added 2026-10-14 at the user's request to present to the house.
+  // The house itself does NOT take reservations (Instagram bio), so the page labels this
+  // as a preview. Requests go to the APX Web provisional WhatsApp (the same one the
+  // Famiglia Mancini proposal uses) until the house gives its own channel.
+  booking: {
+    demo: true,
+    whatsapp: '5511944815707',
+    whatsappLabel: '(11) 944815707',
+    windowDays: 30,
+    maxParty: 20,
+    slotMinutes: 30,
+    // The last slot is one hour before closing.
+    lastSlotBeforeClose: 60,
+  },
 }
 
 // Product photos: all published by the house on Instagram. Captions describe only what
@@ -76,6 +91,8 @@ export const vitrine = [
       { img: 'torta-chocolate', caption: 'Torta com cobertura de chocolate', alt: 'Torta redonda com cobertura de chocolate e camada de creme sobre base dourada' },
       { img: 'doces-caramelizados', caption: 'Doces caramelizados com nozes', alt: 'Doces redondos com calda de caramelo brilhante e nozes no topo, lado a lado na vitrine' },
       { img: 'taca-frutas', caption: 'Taça de frutas', alt: 'Taça de vidro com frutas picadas, morangos e mamão, ao lado de um copo de bebida com espuma' },
+      { img: 'doce-urso', caption: 'Doce em forma de urso', alt: 'Doce redondo coberto de chocolate granulado, com orelhas, olhos e focinho de chocolate formando a cara de um urso, sobre base dourada' },
+      { img: 'fatia-bolo-chocolate', caption: 'Fatia de bolo com cobertura de chocolate', alt: 'Fatia retangular de bolo com camadas de chocolate e creme, cobertura de chocolate polvilhada de açúcar, sobre base dourada' },
     ],
   },
   {
@@ -87,6 +104,10 @@ export const vitrine = [
       { img: 'vitrine-paes', caption: 'Pães na vitrine', alt: 'Vitrine com pães rústicos de casca escura e pãezinhos dourados ao fundo' },
       { img: 'croissants-vitrine', caption: 'Croissants na vitrine', alt: 'Croissants enfileirados na vitrine de vidro, com folhados ao lado' },
       { img: 'vitrine-folhados', caption: 'A vitrine de folhados', alt: 'Vitrine de vidro com fileiras de folhados e roscas pequenas' },
+      { img: 'folhado-creme', caption: 'Folhado com creme', alt: 'Folhado quadrado e dourado com um centro de creme amarelo, polvilhado de açúcar, sobre papel num prato turquesa' },
+      { img: 'paes-dourados', caption: 'Pãezinhos dourados', alt: 'Pãezinhos de casca dourada e brilhante, lado a lado na vitrine' },
+      { img: 'croissants-acucar', caption: 'Croissants com açúcar', alt: 'Croissants dourados polvilhados de açúcar, amontoados na vitrine' },
+      { img: 'folhados-coracao', caption: 'Folhados em forma de coração', alt: 'Folhados caramelizados em forma de coração, amontoados' },
     ],
   },
   {
@@ -99,6 +120,11 @@ export const vitrine = [
       { img: 'sanduiche-quente', caption: 'Sanduíche quente', alt: 'Sanduíche de pão rústico com queijo derretido, tomate e folhas, num prato turquesa' },
       { img: 'tortinhas-cremosas', caption: 'Tortinhas de recheio cremoso', alt: 'Tortinhas de massa com recheio branco e cremoso, lado a lado' },
       { img: 'sanduiche-ciabatta', caption: 'Sanduíche com chips', alt: 'Sanduíche de pão rústico com legumes grelhados e queijo, servido com chips' },
+      { img: 'coxinhas', caption: 'Coxinhas', alt: 'Coxinhas douradas, em close' },
+      { img: 'quiche-tomate', caption: 'Quiche com tomate', alt: 'Quiche individual gratinada com pedaços de tomate, sobre papel com o logotipo da casa' },
+      { img: 'sanduiche-salmao', caption: 'Sanduíche de salmão', alt: 'Sanduíche cortado ao meio, com salmão, creme e folhas verdes, num prato turquesa' },
+      { img: 'torrada-presunto', caption: 'Torrada com presunto cru e queijo', alt: 'Torrada com presunto cru, queijo branco cremoso e tomates-cereja, com folhas verdes ao lado' },
+      { img: 'pizza-presunto', caption: 'Pizza com presunto cru e folhas', alt: 'Pizza retangular em pedaços, coberta de presunto cru e folhas verdes, numa bandeja' },
     ],
   },
   {
@@ -110,12 +136,25 @@ export const vitrine = [
       { img: 'pratos-saladas', caption: 'Saladas e molhos', alt: 'Vista de cima de pratos de salada e potinhos de molho verde e vermelho' },
       { img: 'prato-peixe', caption: 'Peixe com purê e batata palha', alt: 'Filés de peixe com purê amarelo, batata palha e molho verde num prato claro' },
       { img: 'salada-salmao', caption: 'Salada com molho à parte', alt: 'Prato de salada de folhas roxas e verdes com um potinho de molho claro' },
+      { img: 'prato-carne', caption: 'Carne ao molho com purê e legumes', alt: 'Carne ao molho escuro com purê, cenoura e legumes num prato branco' },
+      { img: 'salmao-cogumelos', caption: 'Salmão com cogumelos e arroz cremoso', alt: 'Posta de salmão com cogumelos, brócolis e arroz cremoso com queijo ralado' },
+      { img: 'crepe-gratinado', caption: 'Crepe gratinado', alt: 'Crepes cobertos de molho branco e queijo ralado, decorados com salsa e tomate' },
+    ],
+  },
+  {
+    id: 'cafes-e-adega',
+    title: 'Cafés e adega',
+    note: 'Cafés e Adega são destaques da casa no Instagram.',
+    items: [
+      { img: 'cafe-espuma', caption: 'Café com espuma e cacau', alt: 'Xícara branca de café com espuma de leite e cacau polvilhado por cima' },
+      { img: 'bebida-morango', caption: 'Bebida de morango', alt: 'Taça alta com bebida cremosa de morango, espuma branca e um morango na borda, numa mesa do salão' },
+      { img: 'adega-maquinas', caption: 'A adega', alt: 'Balcão branco com duas máquinas de vinho, garrafas de xarope e frutas ao fundo' },
     ],
   },
 ]
 
 // Confirmed by the Instagram highlights, but with no photo on hand.
-export const alsoInHouse = ['Cafés', 'Adega', 'Ilha de frios']
+export const alsoInHouse = ['Ilha de frios']
 
 export const salao = {
   wide: { img: 'salao-panorama', alt: 'Salão da Saint Tropez visto de dentro: mesas brancas, cadeiras de palhinha e a cobertura de arcos de vidro iluminada' },
@@ -124,11 +163,14 @@ export const salao = {
     { img: 'salao-arcos', caption: 'O salão no fim da tarde', alt: 'Salão com piso de madeira, mesas brancas e arcos de vidro, no fim da tarde' },
     { img: 'carrinho-bolos', caption: 'O carrinho de bolos turquesa', alt: 'Carrinho turquesa em forma de triciclo com prateleiras de bolos e doces dentro do salão' },
     { img: 'triciclo', caption: 'O triciclo da casa', alt: 'Frente de um triciclo turquesa com o logotipo da Saint Tropez, dentro do salão' },
+    { img: 'balcao-vitrine', caption: 'O balcão da vitrine', alt: 'Balcão de vitrine branco e comprido, cheio de pães e salgados, no meio do salão' },
+    { img: 'salao-palmeira', caption: 'A palmeira no meio do salão', alt: 'Salão claro com mesas brancas, cadeiras de palhinha e uma palmeira num vaso, com prateleiras ao fundo' },
   ],
 }
 
 export const facade = {
-  day: { img: 'fachada-letreiro', alt: 'Fachada branca em relevo de pirâmides com o letreiro Saint Tropez confeitaria e a marquise turquesa, sob céu azul' },
+  day: { img: 'fachada-inteira', alt: 'O prédio da Saint Tropez inteiro: fachada branca em relevo com o selo e o letreiro, a marquise turquesa e palmeiras na frente' },
+  sign: { img: 'fachada-letreiro', alt:'Fachada branca em relevo de pirâmides com o letreiro Saint Tropez confeitaria e a marquise turquesa, sob céu azul' },
   side: { img: 'fachada-relevo', alt: 'Canto da fachada em relevo branco com o logotipo e a marquise turquesa' },
   night: { img: 'fachada-noite', alt: 'Entrada da Saint Tropez à noite, com a cobertura de arcos iluminada' },
 }

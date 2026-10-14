@@ -241,5 +241,172 @@
    1080,
    1170
   ]
+ },
+ "folhado-creme": {
+  "w": 637,
+  "h": 856,
+  "sizes": [
+   637
+  ]
+ },
+ "doce-urso": {
+  "w": 852,
+  "h": 739,
+  "sizes": [
+   640,
+   852
+  ]
+ },
+ "fatia-bolo-chocolate": {
+  "w": 853,
+  "h": 737,
+  "sizes": [
+   640,
+   853
+  ]
+ },
+ "paes-dourados": {
+  "w": 851,
+  "h": 737,
+  "sizes": [
+   640,
+   851
+  ]
+ },
+ "prato-carne": {
+  "w": 854,
+  "h": 735,
+  "sizes": [
+   640,
+   854
+  ]
+ },
+ "salmao-cogumelos": {
+  "w": 849,
+  "h": 737,
+  "sizes": [
+   640,
+   849
+  ]
+ },
+ "bebida-morango": {
+  "w": 854,
+  "h": 733,
+  "sizes": [
+   640,
+   854
+  ]
+ },
+ "croissants-acucar": {
+  "w": 849,
+  "h": 738,
+  "sizes": [
+   640,
+   849
+  ]
+ },
+ "folhados-coracao": {
+  "w": 848,
+  "h": 742,
+  "sizes": [
+   640,
+   848
+  ]
+ },
+ "sanduiche-salmao": {
+  "w": 848,
+  "h": 738,
+  "sizes": [
+   640,
+   848
+  ]
+ },
+ "salao-vidro": {
+  "w": 851,
+  "h": 737,
+  "sizes": [
+   640,
+   851
+  ]
+ },
+ "salao-palmeira": {
+  "w": 846,
+  "h": 740,
+  "sizes": [
+   640,
+   846
+  ]
+ },
+ "quiche-tomate": {
+  "w": 848,
+  "h": 737,
+  "sizes": [
+   640,
+   848
+  ]
+ },
+ "torrada-presunto": {
+  "w": 850,
+  "h": 740,
+  "sizes": [
+   640,
+   850
+  ]
+ },
+ "cafe-espuma": {
+  "w": 850,
+  "h": 739,
+  "sizes": [
+   640,
+   850
+  ]
+ },
+ "crepe-gratinado": {
+  "w": 860,
+  "h": 530,
+  "sizes": [
+   640,
+   860
+  ]
+ },
+ "fachada-inteira": {
+  "w": 851,
+  "h": 740,
+  "sizes": [
+   640,
+   851
+  ]
+ },
+ "coxinhas": {
+  "w": 848,
+  "h": 736,
+  "sizes": [
+   640,
+   848
+  ]
+ },
+ "balcao-vitrine": {
+  "w": 850,
+  "h": 737,
+  "sizes": [
+   640,
+   850
+  ]
+ },
+ "pizza-presunto": {
+  "w": 850,
+  "h": 743,
+  "sizes": [
+   640,
+   850
+  ]
+ },
+ "adega-maquinas": {
+  "w": 854,
+  "h": 737,
+  "sizes": [
+   640,
+   854
+  ]
  }
 }
