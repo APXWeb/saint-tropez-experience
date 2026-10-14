@@ -43,6 +43,10 @@ const highlightIcon = {
 
 const ext = 'target="_blank" rel="noopener"'
 
+// The rail shows the first photos of each shelf; the rest open in the lightbox from the
+// shelf's "ver todas" button, so the vitrine stays short with every photo still reachable.
+const ON_RAIL = 4
+
 function vitrineHTML() {
   let index = 0
   const nav = vitrine
@@ -53,9 +57,11 @@ function vitrineHTML() {
     .join('')
   const shelves = vitrine
     .map((c, ci) => {
+      const first = index
       const items = c.items
         .map((it, i) => {
           const n = index++
+          if (i >= ON_RAIL) return ''
           return (
             `<figure class="piece piece--${(i % 5) + 1}">` +
             `<button class="piece-open" type="button" data-index="${n}" aria-label="Ampliar foto: ${esc(it.caption)}">` +
@@ -68,7 +74,11 @@ function vitrineHTML() {
         .join('')
       return (
         `<section class="shelf" id="${c.id}" aria-labelledby="${c.id}-t" data-shelf="${ci}">` +
-        `<header class="shelf-head"><h3 id="${c.id}-t">${esc(c.title)}</h3><p>${esc(c.note)}</p></header>` +
+        `<header class="shelf-head"><h3 id="${c.id}-t">${esc(c.title)}</h3><p>${esc(c.note)}</p>` +
+        (c.items.length > ON_RAIL
+          ? `<button class="shelf-more" type="button" data-index="${first}">Ver todas as ${c.items.length} fotos ${icon.expand}</button>`
+          : '') +
+        `</header>` +
         `<div class="shelf-pieces">${items}</div></section>`
       )
     })
@@ -164,7 +174,6 @@ export function blocks() {
     'instagram': site.links.instagram,
     'ig-handle': site.links.instagramHandle,
     'apx': site.links.apx,
-    'booking-whatsapp': esc(site.booking.whatsappLabel),
     'vitrine-nav': v.nav,
     'vitrine-shelves': v.shelves,
     'salao-wide': picture(salao.wide.img, { alt: salao.wide.alt, sizes: '100vw', cls: 'reveal-pic' }),

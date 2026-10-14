@@ -104,6 +104,36 @@ test('menu móvel abre, prende o foco e fecha com Esc', async ({ page, isMobile 
   await expect(btn).toHaveAttribute('aria-expanded', 'false')
 })
 
+// The desktop rail is scrubbed: wait until an element has stopped moving before clicking it.
+async function settle(locator) {
+  let last = null
+  await expect
+    .poll(async () => {
+      const box = await locator.boundingBox()
+      const same = box && last && Math.abs(box.x - last.x) < 1 && Math.abs(box.y - last.y) < 1
+      last = box
+      return Boolean(same)
+    }, { timeout: 8000, intervals: [250] })
+    .toBe(true)
+}
+
+test('vitrine curta: 4 fotos por categoria no trilho, todas na galeria', async ({ page }) => {
+  await expect(page.locator('#salgados .piece')).toHaveCount(4)
+  await page.locator('.shelf-tab', { hasText: 'Salgados' }).click()
+  const more = page.locator('#salgados .shelf-more')
+  await expect(more).toHaveText(/Ver todas as 10 fotos/)
+  await settle(more)
+  await more.click()
+  const dialog = page.locator('[data-lightbox]')
+  await expect(dialog).toBeVisible()
+  await expect(dialog.locator('[data-lb-count]')).toHaveText('17 de 36')
+  for (let i = 0; i < 9; i++) await dialog.getByRole('button', { name: 'Próxima foto' }).click()
+  await expect(dialog.locator('[data-lb-count]')).toHaveText('26 de 36')
+  await expect(dialog.locator('[data-lb-cat]')).toHaveText('Salgados')
+  await page.keyboard.press('Escape')
+  await expect(more).toBeFocused()
+})
+
 test('vitrine: categorias, lightbox, navegação entre fotos e teclado', async ({ page }) => {
   await page.locator('.shelf-tab', { hasText: 'Salgados' }).click()
   await expect
@@ -118,6 +148,7 @@ test('vitrine: categorias, lightbox, navegação entre fotos e teclado', async (
     .toBe(true)
 
   const first = page.locator('#salgados .piece-open').first()
+  await settle(first)
   await first.click()
   const dialog = page.locator('[data-lightbox]')
   await expect(dialog).toBeVisible()
@@ -133,41 +164,6 @@ test('vitrine: categorias, lightbox, navegação entre fotos e teclado', async (
   await page.keyboard.press('Escape')
   await expect(dialog).toBeHidden()
   await expect(first).toBeFocused()
-})
-
-test('reserva (prévia): aviso, validação, mensagem do WhatsApp e pedidos salvos', async ({ page }) => {
-  // Capture the WhatsApp window instead of opening it.
-  await page.evaluate(() => { window.__opened = []; window.open = (u) => { window.__opened.push(u); return null } })
-  const r = page.locator('#reserva')
-  await r.scrollIntoViewIfNeeded()
-  await expect(r.locator('.reserva-demo')).toContainText('Hoje a casa não faz reservas')
-
-  await r.getByRole('button', { name: /Enviar pedido/ }).click()
-  await expect(r.locator('#bk-date-error')).toBeVisible()
-  await expect(r.locator('#bk-date')).toBeFocused()
-
-  const d = new Date()
-  d.setDate(d.getDate() + 3)
-  const iso = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
-  await r.locator('#bk-date').fill(iso)
-  await r.locator('#bk-time').selectOption({ label: '09h30' })
-  await r.getByRole('button', { name: 'Mais uma pessoa' }).click()
-  await r.locator('#bk-name').fill('Teste Silva')
-  await r.locator('#bk-phone').fill('11987654321')
-  await expect(r.locator('[data-sum="party"]')).toHaveText('3 pessoas')
-  await r.getByRole('button', { name: /Enviar pedido/ }).click()
-
-  await expect(r.locator('[data-bk-done]')).toBeVisible()
-  const url = await page.evaluate(() => window.__opened[0])
-  expect(url.startsWith('https://wa.me/5511944815707?text=')).toBe(true)
-  const text = decodeURIComponent(url.split('text=')[1])
-  expect(text).toContain('Saint Tropez Confeitaria')
-  expect(text).toContain('Nome: Teste Silva')
-  expect(text).toContain('Horário: 09h30')
-  expect(text).toContain('Pessoas: 3')
-  await expect(r.locator('.ticket')).toHaveCount(1)
-  await r.getByRole('button', { name: 'Pedir cancelamento' }).click()
-  await expect(r.locator('.ticket-state')).toHaveText('Cancelamento pedido')
 })
 
 test('localização: endereço, horário de hoje e mapa sob demanda', async ({ page }) => {

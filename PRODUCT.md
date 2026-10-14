@@ -32,7 +32,7 @@ In-person only. Official Instagram bio (checked 2026-10-13): "Um novo conceito e
 - Verified on the Google Business profile (2026-10-13): R. Piracema, 221, Santa Teresinha, São Paulo, SP, 02460-040; hours dom-qui 06:00-22:00, sex-sáb 06:00-23:00; no phone listed; website field points to Instagram; 4,6 stars from 6.342 reviews; Maps CID 42194893093639372; coords -23.4911958, -46.6372651.
 - Divergences: the old APX proposal, the company registry (CNPJ), Waze and BaresSP list nº 211. The site shows 221 (Google) but the address is NOT definitively validated until the house confirms. Hours match the user's survey of 2026-10-13; the Instagram bio says only "6:00 às 22:00".
 - Internal reference (src/data/internal.js, never rendered): opening year 2020 (press) vs CNPJ 2019; customer parking per one listing (free/valet unknown); 21 item names from user-submitted historic menus, not current, prices not recorded.
-- No reservations, no delivery, no phone orders: never add forms, order flows, WhatsApp or phone CTAs. One user-approved exception (2026-10-14): the `#reserva` section is a reservation DEMO modelled on the Famiglia Mancini proposal, to present to the house. It must stay labelled as a preview that says the house does not take reservations today, and it sends to the APX Web provisional WhatsApp in `site.booking` until the house gives its own channel. Remove the demo label only when the house confirms it takes reservations.
+- No reservations, no delivery, no phone orders: never add forms, order flows, WhatsApp or phone CTAs.
 - Unconfirmed, do not publish: founding year, parking, "Côte d'Azur" inspiration, "artesanal", own-brand claims, product names from directories or historic menus, any price.
 
 ## Brand Commitments
