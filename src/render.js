@@ -108,7 +108,7 @@ function salaoFrames() {
   return salao.frames
     .map(
       (f, i) =>
-        `<figure class="frame frame--${i + 1}" data-reveal>${picture(f.img, { alt: f.alt, sizes: '(max-width: 760px) 92vw, 40vw', cls: 'frame-pic' })}<figcaption>${esc(f.caption)}</figcaption></figure>`,
+        `<figure class="frame frame--${i + 1}" data-reveal>${picture(f.img, { alt: f.alt, sizes: f.sizes, cls: 'frame-pic' })}</figure>`,
     )
     .join('')
 }
