@@ -76,7 +76,9 @@ headerState()
 /* Mobile menu */
 const setMenu = initMenu({ top, lenis, reduced })
 
-/* In-page links go through Lenis */
+/* In-page links go through Lenis. A link to a vitrine shelf (#cafes-e-adega, #bolos-e-doces...)
+   opens that shelf and scrolls to the vitrine; showShelf is set by the vitrine block below. */
+let showShelf = () => false
 document.addEventListener('click', (e) => {
   const a = e.target.closest('a[href^="#"]')
   if (!a) return
@@ -86,12 +88,15 @@ document.addEventListener('click', (e) => {
   e.preventDefault()
   const fromMenu = a.hasAttribute('data-menu-link')
   if (fromMenu) setMenu(false, { focus: false })
+  const isShelf = target.classList.contains('shelf')
   const go = () => {
-    const y = id === 'inicio' ? 0 : target.getBoundingClientRect().top + window.scrollY
+    if (isShelf) showShelf(id)
+    const anchor = isShelf ? $('#vitrine') : target
+    const y = id === 'inicio' ? 0 : anchor.getBoundingClientRect().top + window.scrollY
     scrollTo(y)
     history.replaceState(null, '', `#${id}`)
     // Move focus for keyboard and screen-reader users without a second jump.
-    const focusTarget = target.querySelector('h1, h2, h3') || target
+    const focusTarget = isShelf ? $('[data-plaque][aria-selected="true"]') : target.querySelector('h1, h2, h3') || target
     focusTarget.setAttribute('tabindex', '-1')
     focusTarget.focus({ preventScroll: true })
   }
@@ -144,6 +149,12 @@ if (!reduced) {
     gsap.fromTo($('.case-base', to), { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power2.out', clearProps: 'all' })
   }
   plaques.forEach((p, i) => p.addEventListener('click', () => choose(i)))
+  showShelf = (id) => {
+    const i = shelves.findIndex((sh) => sh.id === id)
+    if (i < 0) return false
+    choose(i)
+    return true
+  }
   // Arrow keys move between plaques, as in any tab list.
   $('[data-plaques]').addEventListener('keydown', (e) => {
     const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key]
@@ -172,6 +183,25 @@ initLightbox({
   onOpen: () => lenis?.stop(),
   onClose: () => lenis?.start(),
 })
+
+/* Instagram: the façade opens from day to night as it comes into view, then the reader can slide it. */
+{
+  const duo = $('[data-duo]')
+  if (duo) {
+    const range = $('.duo-range', duo)
+    const set = (v) => duo.style.setProperty('--split', `${v}%`)
+    set(range.value)
+    range.addEventListener('input', () => set(range.value))
+    if (!reduced) {
+      gsap.fromTo(duo, { '--split': '100%' }, {
+        '--split': `${range.value}%`,
+        duration: 1.8,
+        ease: 'expo.out',
+        scrollTrigger: { trigger: duo, start: 'top 82%', once: true },
+      })
+    }
+  }
+}
 
 /* Map: loads from Google only on request */
 const mapBtn = $('[data-map-load]')
@@ -205,8 +235,15 @@ document.fonts?.ready.then(() => ScrollTrigger.refresh())
 window.addEventListener('load', () => {
   ScrollTrigger.refresh()
   lightFromScroll()
-  if (location.hash) {
-    const t = document.getElementById(location.hash.slice(1))
-    if (t) setTimeout(() => scrollTo(t.getBoundingClientRect().top + window.scrollY, { immediate: true }), 60)
-  }
+  openHash()
 })
+// A shelf link opened from another page (or the address changed by hand, or back/forward)
+// lands on the vitrine with that shelf open.
+function openHash() {
+  if (!location.hash) return
+  const t = document.getElementById(location.hash.slice(1))
+  if (!t) return
+  const anchor = t.classList.contains('shelf') && showShelf(t.id) ? $('#vitrine') : t
+  setTimeout(() => scrollTo(anchor.getBoundingClientRect().top + window.scrollY, { immediate: true }), 60)
+}
+window.addEventListener('hashchange', openHash)

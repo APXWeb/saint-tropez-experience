@@ -54,7 +54,6 @@
           <li><a href="#visite">Visite</a></li>
         </ul>
       </nav>
-      <p class="status status--top" data-status><span class="status-dot" aria-hidden="true"></span><span data-status-text>Todos os dias a partir das 6h</span></p>
       <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-open>
         <span class="menu-btn-label">Menu</span><span class="menu-btn-bars" aria-hidden="true"><span></span><span></span></span>
       </button>
@@ -73,7 +72,6 @@
       </ul>
     </nav>
     <div class="menu-foot">
-      <p class="status" data-status><span class="status-dot" aria-hidden="true"></span><span data-status-text>Todos os dias a partir das 6h</span></p>
       <address>{{street}}<br>{{district}}, São Paulo</address>
       <a class="btn btn--canopy" href="{{maps}}" target="_blank" rel="noopener">{{i-pin}}<span>Abrir no Google Maps</span></a>
     </div>
@@ -96,8 +94,8 @@
       </div>
       <div class="hero-windows">
         <figure class="window window--arch" data-hero-arch>{{hero-salao}}</figure>
-        <figure class="window window--square" data-hero-square>{{hero-cake}}</figure>
-        <p class="hero-caption">O salão e a vitrine, em fotos publicadas pela casa.</p>
+        <figure class="window window--square" data-hero-square>{{hero-square}}</figure>
+        <p class="hero-caption">O salão e a fachada, em fotos publicadas pela casa.</p>
       </div>
     </section>
 
@@ -154,11 +152,11 @@
     <section class="insta" id="instagram" aria-labelledby="insta-t">
       <div class="insta-head">
         <h2 id="insta-t" class="display">{{ig-handle}}</h2>
-        <p>O Instagram é onde a casa mostra o que sai na vitrine e avisa o horário. Os destaques abaixo levam ao perfil.</p>
+        <p>O Instagram é onde a casa mostra o que sai na vitrine e avisa o horário. Os atalhos abaixo levam às seções do site.</p>
         <a class="btn btn--canopy" href="{{instagram}}" target="_blank" rel="noopener">{{i-insta}}<span>Abrir o Instagram</span></a>
       </div>
-      <ul class="highlights" aria-label="Destaques do perfil">{{highlights}}</ul>
-      <ul class="insta-strip" aria-label="Fotos publicadas pela casa">{{insta-strip}}</ul>
+      <ul class="highlights" aria-label="Atalhos para as seções do site">{{highlights}}</ul>
+      {{insta-duo}}
     </section>
 
     <!-- Visite: a noite na fachada -->
@@ -167,7 +165,6 @@
         <div class="visite-copy">
           <h2 id="visite-t" class="display display--light visite-street">{{street}}</h2>
           <p class="visite-city">{{city-line}}</p>
-          <p class="status status--night" data-status><span class="status-dot" aria-hidden="true"></span><span data-status-text>Todos os dias a partir das 6h</span></p>
           <table class="hours" aria-label="Horário de funcionamento">
             <tbody>{{hours-rows}}</tbody>
           </table>
@@ -177,7 +174,6 @@
             <a class="btn btn--ghost" href="{{directions}}" target="_blank" rel="noopener">{{i-route}}<span>Traçar rota</span></a>
             <a class="btn btn--ghost" href="{{waze}}" target="_blank" rel="noopener">{{i-waze}}<span>Waze</span></a>
           </div>
-          <ul class="visite-rules">{{rules}}</ul>
         </div>
         <div class="visite-media">
           <figure class="window window--arch visite-night" data-reveal>{{facade-night}}<figcaption>A fachada à noite.</figcaption></figure>

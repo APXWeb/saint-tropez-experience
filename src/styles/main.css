@@ -180,11 +180,8 @@ html { scrollbar-color: var(--cocoa-2) var(--relief); scrollbar-width: thin; }
   transform: scaleX(0); transform-origin: right; transition: transform 0.45s var(--ease-out);
 }
 .nav a:hover::after, .nav a[aria-current='true']::after { transform: scaleX(1); transform-origin: left; }
-.status--top { font-size: 0.875rem; padding-left: var(--s4); border-left: 1px solid rgba(42, 26, 20, 0.18); }
-.top[data-theme='night'] .status--top { border-color: rgba(233, 241, 239, 0.2); }
 .menu-btn { display: none; }
 
-@media (max-width: 1180px) { .status--top { display: none; } }
 @media (max-width: 960px) {
   .nav { display: none; }
   .menu-btn {
@@ -561,12 +558,6 @@ html { scrollbar-color: var(--cocoa-2) var(--relief); scrollbar-width: thin; }
 .hl-ring svg { width: 40px; height: 40px; fill: none; stroke: var(--cocoa); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 .hl-name { font-size: 0.85rem; font-weight: 650; text-align: center; line-height: 1.25; }
 .hl:hover .hl-ring { transform: translateY(-4px); box-shadow: 0 0 0 3px var(--relief-hi), 0 0 0 4.5px var(--cocoa); }
-.insta-strip { margin-top: var(--s7); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--s3); align-items: start; }
-.ig picture { height: 100%; }
-.ig a { display: block; overflow: hidden; aspect-ratio: 1; box-shadow: var(--window-shadow); background: var(--relief-hi); }
-.ig img { transition: transform 1s var(--ease-out); }
-.ig a:hover img { transform: scale(1.05); }
-.ig--2, .ig--4 { margin-top: var(--s6); }
 @media (max-width: 960px) {
   .insta-head { grid-template-columns: 1fr; }
   .insta-head .display, .insta-head p, .insta-head .btn { grid-column: 1; justify-self: start; }
@@ -580,9 +571,48 @@ html { scrollbar-color: var(--cocoa-2) var(--relief); scrollbar-width: thin; }
   .hl-ring { width: 64px; height: 64px; }
   .hl-ring svg { width: 30px; height: 30px; }
   .hl-name { font-size: 0.78rem; }
-  .insta-strip { grid-template-columns: repeat(2, 1fr); }
-  .ig--5 { display: none; }
-  .ig--2, .ig--4 { margin-top: var(--s5); }
+}
+
+/* Instagram: a fachada de dia e à noite, num arco que se desliza */
+.duo { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--s4); row-gap: var(--s6); align-items: center; margin-top: var(--s7); }
+.duo-frame {
+  grid-column: 1 / 8; position: relative; isolation: isolate; aspect-ratio: 5 / 4; overflow: hidden;
+  border-radius: var(--arch); background: var(--relief-hi); box-shadow: var(--window-shadow);
+}
+/* The same inner ring as the other arch windows of the house. */
+.duo-frame::after {
+  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none; border-radius: inherit;
+  box-shadow: inset 0 0 0 10px var(--relief-hi), inset 0 14px 24px -10px rgba(42, 26, 20, 0.35);
+}
+.duo-pic { position: absolute; inset: 0; }
+.duo-pic picture, .duo-pic img { width: 100%; height: 100%; }
+.duo-pic img { object-fit: cover; }
+/* Night covers the right of the line; day is what is left of it. */
+.duo-night { clip-path: inset(0 0 0 var(--split, 50%)); }
+.duo-line { position: absolute; top: 0; bottom: 0; left: var(--split, 50%); width: 0; z-index: 2; pointer-events: none; }
+.duo-line::before { content: ''; position: absolute; top: 0; bottom: 0; left: -1px; width: 2px; background: var(--relief-hi); box-shadow: 0 0 0 1px rgba(42, 26, 20, 0.12); }
+.duo-line::after {
+  content: ''; position: absolute; top: 50%; left: -22px; width: 44px; height: 44px; margin-top: -22px; border-radius: 50%;
+  background: var(--turq); box-shadow: 0 0 0 4px var(--relief-hi), 0 12px 22px -10px rgba(8, 50, 48, 0.7);
+}
+.duo-tag {
+  position: absolute; bottom: var(--s4); z-index: 2; padding: 0.3rem 0.65rem; border-radius: 2px; pointer-events: none;
+  background: rgba(248, 249, 246, 0.94); color: var(--cocoa); font-size: 0.8125rem; font-weight: 650; line-height: 1.2;
+}
+.duo-tag--day { left: var(--s4); }
+.duo-tag--night { right: var(--s4); background: var(--cocoa); color: var(--relief-hi); }
+.duo-range {
+  position: absolute; inset: 0; z-index: 4; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; -webkit-appearance: none; appearance: none;
+}
+.duo-frame:has(.duo-range:focus-visible) { outline: 2px solid var(--cocoa); outline-offset: 5px; }
+.duo-copy { grid-column: 9 / 13; display: grid; gap: var(--s3); justify-items: start; }
+.duo-title { font-size: var(--t-h3); line-height: 1; }
+.duo-title em { font-style: normal; color: var(--turq-ink); }
+.duo-copy p { max-width: 36ch; color: var(--cocoa-2); }
+@media (max-width: 960px) {
+  .duo { grid-template-columns: 1fr; }
+  .duo-frame, .duo-copy { grid-column: 1; }
+  .duo-frame { aspect-ratio: 4 / 5; max-width: 560px; width: 100%; }
 }
 
 /* Visite: a noite */
@@ -592,7 +622,6 @@ html { scrollbar-color: var(--cocoa-2) var(--relief); scrollbar-width: thin; }
 .visite-street { font-size: clamp(2.7rem, 0.9rem + 4.6vw, 5.6rem); line-height: 0.95; }
 @media (min-width: 521px) { .visite-street { white-space: nowrap; } }
 .visite-city { margin-top: var(--s3); font-size: var(--t-lead); color: var(--night-muted); }
-.status--night { margin-top: var(--s5); }
 .hours { margin-top: var(--s4); width: 100%; max-width: 30rem; border-collapse: collapse; font-variant-numeric: tabular-nums; }
 .hours th, .hours td { padding: 0.65rem 0; border-bottom: 1px solid rgba(233, 241, 239, 0.14); text-align: left; font-weight: 500; }
 .hours td { text-align: right; color: var(--night-muted); }
@@ -600,9 +629,6 @@ html { scrollbar-color: var(--cocoa-2) var(--relief); scrollbar-width: thin; }
 .hours tr[data-today='true'] th::after { content: ' · hoje'; font-weight: 500; }
 .hours-note { margin-top: var(--s3); max-width: 46ch; font-size: var(--t-small); color: var(--night-muted); }
 .visite-actions { margin-top: var(--s5); display: flex; flex-wrap: wrap; gap: var(--s3); }
-.visite-rules { margin-top: var(--s5); display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-size: 0.9375rem; color: var(--night-muted); }
-.visite-rules li { display: inline-flex; align-items: center; gap: 0.5rem; }
-.visite-rules li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--turq); }
 .visite-media { grid-column: 8 / 13; display: grid; gap: var(--s5); align-content: start; }
 .visite-night { background: none; box-shadow: none; overflow: visible; aspect-ratio: auto; border-radius: 0; display: grid; gap: var(--s2); }
 .visite-night::after { display: none; }

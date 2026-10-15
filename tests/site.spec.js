@@ -247,3 +247,89 @@ test('cardápio: categorias acompanham a leitura e não há rolagem horizontal',
   await expect(page).toHaveURL(/#sobremesas$/)
   if (isMobile) await expect(page.locator('[data-cat-nav]')).toBeInViewport()
 })
+
+test('destaques: cada atalho leva ao destino certo, sem sair para o Instagram', async ({ page }) => {
+  const hl = page.locator('.highlights a')
+  await expect(hl).toHaveCount(6)
+  const hrefs = await hl.evaluateAll((as) => as.map((a) => [a.textContent.trim(), a.getAttribute('href'), a.target]))
+  expect(hrefs).toEqual([
+    ['Clientes', '#salao', ''],
+    ['Adega', '#cafes-e-adega', ''],
+    ['Bolos e doces', '#bolos-e-doces', ''],
+    ['Cafés', 'cardapio.html#cafes', ''],
+    ['Ilha de frios', '#cafes-e-adega', ''],
+    ['Localização', '#visite', ''],
+  ])
+  const inView = (sel) => page.evaluate((s) => {
+    const r = document.querySelector(s).getBoundingClientRect()
+    return r.top < window.innerHeight * 0.7 && r.bottom > 0
+  }, sel)
+
+  await hl.filter({ hasText: 'Adega' }).click()
+  await expect(page).toHaveURL(/#cafes-e-adega$/)
+  await expect(page.locator('#cafes-e-adega')).toBeVisible()
+  await expect(page.getByRole('tab', { name: /Cafés e adega/ })).toHaveAttribute('aria-selected', 'true')
+  await expect.poll(() => inView('#vitrine'), { timeout: 8000 }).toBe(true)
+
+  await page.locator('#instagram').scrollIntoViewIfNeeded()
+  await hl.filter({ hasText: 'Bolos e doces' }).click()
+  await expect(page).toHaveURL(/#bolos-e-doces$/)
+  await expect(page.locator('#bolos-e-doces')).toBeVisible()
+  await expect(page.locator('#cafes-e-adega')).toBeHidden()
+  await expect.poll(() => inView('#vitrine'), { timeout: 8000 }).toBe(true)
+
+  await page.locator('#instagram').scrollIntoViewIfNeeded()
+  await hl.filter({ hasText: 'Clientes' }).click()
+  await expect(page).toHaveURL(/#salao$/)
+  await expect.poll(() => inView('#salao'), { timeout: 8000 }).toBe(true)
+
+  await page.locator('#instagram').scrollIntoViewIfNeeded()
+  await hl.filter({ hasText: 'Localização' }).click()
+  await expect(page).toHaveURL(/#visite$/)
+  await expect.poll(() => inView('#visite'), { timeout: 8000 }).toBe(true)
+
+  await page.locator('#instagram').scrollIntoViewIfNeeded()
+  await hl.filter({ hasText: 'Cafés' }).click()
+  await expect(page).toHaveURL(/cardapio\.html#cafes$/)
+  await expect(page.locator('#cafes')).toBeInViewport()
+})
+
+test('atalho de prateleira aberto direto pela URL abre a prateleira certa', async ({ page }) => {
+  await page.goto('./#cafes-e-adega')
+  await expect(page.locator('#cafes-e-adega')).toBeVisible()
+  await expect(page.getByRole('tab', { name: /Cafés e adega/ })).toHaveAttribute('aria-selected', 'true')
+  await expect.poll(() => page.evaluate(() => {
+    const r = document.getElementById('vitrine').getBoundingClientRect()
+    return r.top < window.innerHeight * 0.7 && r.bottom > 0
+  }), { timeout: 8000 }).toBe(true)
+})
+
+test('sem repetição: horário ao vivo só na abertura, avisos num lugar, fotos todas diferentes', async ({ page }) => {
+  await expect(page.locator('[data-status]')).toHaveCount(1)
+  await expect(page.locator('.hero [data-status]')).toHaveCount(1)
+  await expect(page.locator('#visite tr[data-day]')).toHaveCount(7)
+  await expect(page.locator('#visite .hours-note')).toBeVisible()
+  await expect(page.locator('.rules-list li')).toHaveCount(3)
+  await expect(page.locator('#visite')).not.toContainText('Não fazemos reservas')
+  const names = await page.locator('main img').evaluateAll((imgs) => imgs.map((i) => (i.currentSrc || i.src).match(/img\/(.+?)-\d+\.(?:webp|avif)/)?.[1]).filter(Boolean))
+  const dup = names.filter((n, i) => names.indexOf(n) !== i)
+  expect(dup, 'fotos repetidas na página').toEqual([])
+  await page.goto('./cardapio.html')
+  await expect(page.locator('[data-status]')).toHaveCount(0)
+  await expect(page.locator('.carta-close a[href="./#casa"]')).toBeVisible()
+})
+
+test('instagram: a fachada de dia e à noite se compara com o deslizador, também pelo teclado', async ({ page }) => {
+  const duo = page.locator('[data-duo]')
+  await duo.scrollIntoViewIfNeeded()
+  await expect(duo.locator('img')).toHaveCount(2)
+  const range = duo.locator('.duo-range')
+  await expect(range).toHaveAttribute('aria-label', /dia e à noite/)
+  await expect.poll(() => duo.evaluate((el) => el.style.getPropertyValue('--split') || getComputedStyle(el).getPropertyValue('--split').trim())).toMatch(/50/)
+  await range.focus()
+  await page.keyboard.press('ArrowRight')
+  await page.keyboard.press('ArrowRight')
+  await expect(range).toHaveValue('52')
+  await expect(duo).toHaveAttribute('style', /--split: 52%/)
+  await expect(duo.locator('a', { hasText: 'Ver mais fotos no Instagram' })).toHaveAttribute('href', IG)
+})

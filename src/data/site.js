@@ -59,7 +59,16 @@ export const site = {
   rating: { value: '4,6', count: '6.342', source: 'Google', month: 'outubro de 2026' },
 
   // Instagram story highlights, checked 2026-10-13.
-  highlights: ['Clientes', 'Adega', 'Bolos e doces', 'Cafés', 'Ilha de frios', 'Localização'],
+  // Os destaques do Instagram viram atalhos para o próprio site (href interno).
+  // '#<id da prateleira>' abre a prateleira da vitrine; 'cardapio.html#<id>' abre a categoria.
+  highlights: [
+    { name: 'Clientes', href: '#salao' },
+    { name: 'Adega', href: '#cafes-e-adega' },
+    { name: 'Bolos e doces', href: '#bolos-e-doces' },
+    { name: 'Cafés', href: 'cardapio.html#cafes' },
+    { name: 'Ilha de frios', href: '#cafes-e-adega' },
+    { name: 'Localização', href: '#visite' },
+  ],
 }
 
 // Product photos: all published by the house on Instagram. Captions describe only what
@@ -172,4 +181,8 @@ export const facade = {
 }
 
 // Curated, static: photos the house published. Not a live feed.
-export const instagramPicks = ['doces-finos', 'triciclo', 'croissants-vitrine', 'bolo-frutas-vermelhas', 'fachada-relevo']
+// A mesma fachada de dia e à noite: duas fotos da casa, comparadas num único quadro.
+export const instagramDuo = {
+  day: { img: 'fachada-relevo', alt: 'Canto da fachada em relevo branco com o logotipo e a marquise turquesa, de dia' },
+  night: { img: 'fachada-noite', alt: 'Cobertura de arcos da entrada à noite, iluminada por baixo' },
+}
