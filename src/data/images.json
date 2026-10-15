@@ -408,5 +408,52 @@
    640,
    854
   ]
+ },
+ "ilha-de-frios": {
+  "w": 851,
+  "h": 735,
+  "sizes": [
+   640,
+   851
+  ]
+ },
+ "adega-parede": {
+  "w": 850,
+  "h": 740,
+  "sizes": [
+   640,
+   850
+  ]
+ },
+ "adega-garrafas": {
+  "w": 851,
+  "h": 736,
+  "sizes": [
+   640,
+   851
+  ]
+ },
+ "pratos-balcao": {
+  "w": 560,
+  "h": 853,
+  "sizes": [
+   560
+  ]
+ },
+ "fachada-noite-letreiro": {
+  "w": 849,
+  "h": 735,
+  "sizes": [
+   640,
+   849
+  ]
+ },
+ "balcao-paes": {
+  "w": 815,
+  "h": 714,
+  "sizes": [
+   640,
+   815
+  ]
  }
 }

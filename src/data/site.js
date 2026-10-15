@@ -90,6 +90,7 @@ export const vitrine = [
       { img: 'croissants', caption: 'Croissants', alt: 'Croissants dourados e folhados, em close' },
       { img: 'folhado-creme', caption: 'Folhado com creme', alt: 'Folhado quadrado e dourado com um centro de creme amarelo, polvilhado de açúcar, sobre papel num prato turquesa' },
       { img: 'vitrine-paes', caption: 'Pães na vitrine', alt: 'Vitrine com pães rústicos de casca escura e pãezinhos dourados ao fundo' },
+      { img: 'balcao-paes', caption: 'Pães, quiches e tortas no balcão', alt: 'Balcão de vidro com pães rústicos, baguetes, quiches e tortas sobre uma grade de madeira, com a base branca iluminada' },
       { img: 'folhados-coracao', caption: 'Folhados em forma de coração', alt: 'Folhados caramelizados em forma de coração, amontoados' },
       { img: 'croissants-vitrine', caption: 'Croissants na vitrine', alt: 'Croissants enfileirados na vitrine de vidro, com folhados ao lado' },
       { img: 'vitrine-folhados', caption: 'A vitrine de folhados', alt: 'Vitrine de vidro com fileiras de folhados e roscas pequenas' },
@@ -121,6 +122,7 @@ export const vitrine = [
     title: 'Pratos e saladas',
     note: 'Pratos servidos no salão, nas louças azul-claras da casa.',
     items: [
+      { img: 'pratos-balcao', caption: 'Os pratos no balcão da cozinha', alt: 'Fileira de pratos montados sobre o balcão laranja, com salmão, legumes, carnes e arroz, e a equipe da cozinha ao fundo' },
       { img: 'prato-salmao', caption: 'Salmão com arroz e legumes', alt: 'Posta de salmão com arroz integral, brócolis e pimentão assado, com molho amarelo' },
       { img: 'salmao-cogumelos', caption: 'Salmão com cogumelos e arroz cremoso', alt: 'Posta de salmão com cogumelos, brócolis e arroz cremoso com queijo ralado' },
       { img: 'pratos-saladas', caption: 'Saladas e molhos', alt: 'Vista de cima de pratos de salada e potinhos de molho verde e vermelho' },
@@ -134,17 +136,20 @@ export const vitrine = [
     id: 'cafes-e-adega',
     menu: 'cafes', // seção correspondente em cardapio.html
     title: 'Cafés e adega',
-    note: 'Cafés e Adega são destaques da casa no Instagram.',
+    note: 'Cafés, adega e ilha de frios, destaques da casa no Instagram.',
     items: [
       { img: 'cafe-espuma', caption: 'Café com espuma e cacau', alt: 'Xícara branca de café com espuma de leite e cacau polvilhado por cima' },
       { img: 'bebida-morango', caption: 'Bebida de morango', alt: 'Taça alta com bebida cremosa de morango, espuma branca e um morango na borda, numa mesa do salão' },
       { img: 'adega-maquinas', caption: 'A adega', alt: 'Balcão branco com duas máquinas de vinho, garrafas de xarope e frutas ao fundo' },
+      { img: 'adega-parede', caption: 'As prateleiras de vinhos', alt: 'Parede de prateleiras de madeira e brancas cheias de garrafas de vinho, com uma pilha de caixas de vinho no centro' },
+      { img: 'ilha-de-frios', caption: 'A ilha de frios', alt: 'Balcão de frios com fatiadores, presuntos e queijos na vitrine e, à frente, caixas de trufas e outros produtos em prateleiras brancas' },
+      { img: 'adega-garrafas', caption: 'O corredor da adega', alt: 'Corredor de prateleiras brancas com garrafas de vinho e espumantes, e um adegueiro de madeira com garrafas deitadas ao fundo' },
     ],
   },
 ]
 
 // Confirmed by the Instagram highlights, but with no photo on hand.
-export const alsoInHouse = ['Ilha de frios']
+export const alsoInHouse = [] // a ilha de frios agora tem fotos na prateleira Cafés e adega
 
 export const salao = {
   wide: { img: 'salao-panorama', alt: 'Salão da Saint Tropez visto de dentro: mesas brancas, cadeiras de palhinha e a cobertura de arcos de vidro iluminada' },
@@ -162,7 +167,7 @@ export const facade = {
   day: { img: 'fachada-inteira', alt: 'O prédio da Saint Tropez inteiro: fachada branca em relevo com o selo e o letreiro, a marquise turquesa e palmeiras na frente' },
   sign: { img: 'fachada-letreiro', alt:'Fachada branca em relevo de pirâmides com o letreiro Saint Tropez confeitaria e a marquise turquesa, sob céu azul' },
   side: { img: 'fachada-relevo', alt: 'Canto da fachada em relevo branco com o logotipo e a marquise turquesa' },
-  night: { img: 'fachada-noite', alt: 'Entrada da Saint Tropez à noite, com a cobertura de arcos iluminada' },
+  night: { img: 'fachada-noite-letreiro', alt: 'A fachada branca em relevo à noite, com o selo e o letreiro Saint Tropez confeitaria iluminados' },
 }
 
 // Curated, static: photos the house published. Not a live feed.

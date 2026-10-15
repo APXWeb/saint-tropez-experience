@@ -98,7 +98,9 @@ function vitrineHTML() {
       )
     })
     .join('')
-  const also = `<p class="vitrine-also">E também: ${alsoInHouse.map(esc).join(', ').toLowerCase()}, com destaque próprio no <a href="${site.links.instagram}" ${ext}>Instagram da casa</a>.</p>`
+  const also = alsoInHouse.length
+    ? `<p class="vitrine-also">E também: ${alsoInHouse.map(esc).join(', ').toLowerCase()}, com destaque próprio no <a href="${site.links.instagram}" ${ext}>Instagram da casa</a>.</p>`
+    : `<p class="vitrine-also">Quer ver mais? Os destaques da casa estão no <a href="${site.links.instagram}" ${ext}>Instagram</a>.</p>`
   return { tabs, panels, also }
 }
 
