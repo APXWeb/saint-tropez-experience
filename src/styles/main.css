@@ -315,14 +315,14 @@ html { scrollbar-color: var(--cocoa-2) var(--relief); scrollbar-width: thin; }
   transition: background-color 0.35s var(--ease-out), color 0.35s var(--ease-out);
 }
 .plaque-name { font-family: var(--f-display); font-size: clamp(1.45rem, 1.1rem + 0.9vw, 2rem); line-height: 1.1; }
-.plaque-count {
-  display: inline-grid; place-items: center; min-width: 1.75rem; height: 1.75rem; padding: 0 0.4rem; border-radius: 999px;
-  background: var(--cocoa); color: var(--turq); font-size: 0.8rem; font-weight: 650; font-variant-numeric: tabular-nums;
-  transition: inherit;
+.plaque-icon {
+  flex: none; width: 1.9rem; height: 1.9rem; fill: none; stroke: currentColor; stroke-width: 1.6;
+  stroke-linecap: round; stroke-linejoin: round; transition: transform 0.4s var(--ease-out), color 0.35s var(--ease-out);
 }
 .plaque:hover { background: rgba(42, 26, 20, 0.08); }
 .plaque[aria-selected='true'] { background: var(--cocoa); color: var(--relief-hi); }
-.plaque[aria-selected='true'] .plaque-count { background: var(--turq); color: var(--cocoa); }
+.plaque:hover .plaque-icon { transform: translateY(-2px) rotate(-4deg); }
+.plaque[aria-selected='true'] .plaque-icon { color: var(--turq-hi); }
 .plaque:focus-visible { outline: 2px solid var(--cocoa); outline-offset: 2px; }
 .vitrine-also { font-size: var(--t-small); font-weight: 550; max-width: 36ch; }
 .vitrine-also a { font-weight: 650; text-decoration-thickness: 1.5px; }
@@ -411,6 +411,7 @@ html { scrollbar-color: var(--cocoa-2) var(--relief); scrollbar-width: thin; }
     border: 0; border-radius: 999px; box-shadow: inset 0 0 0 1.5px var(--cocoa);
   }
   .plaque-name { font-family: var(--f-ui); font-size: 0.95rem; font-weight: 650; }
+  .plaque-icon { width: 1.4rem; height: 1.4rem; }
   .case-glass { height: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; gap: 8px; padding: 8px; }
   .case-glass::after { inset: 8px; }
   .piece--1 { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 4 / 3; }

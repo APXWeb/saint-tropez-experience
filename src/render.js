@@ -45,6 +45,15 @@ const highlightIcon = {
   Localização: '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.6"/>',
 }
 
+// One small line icon per vitrine shelf, drawn like the highlight icons below.
+const shelfIcon = {
+  'bolos-e-doces': '<path d="M4 20h16M5 20v-6h14v6M5 14c1.5 1.4 3 1.4 4.6 0 1.6 1.4 3.2 1.4 4.8 0 1.6 1.4 3.1 1.4 4.6 0M7 14v-3.5h10V14M12 10.5V7.5M12 7.5c-1-.8-1-2.2 0-3.5 1 1.3 1 2.7 0 3.5z"/>',
+  'paes-e-folhados': '<path d="M2.500 15.500C3.500 9.500 7.500 5.500 12 5.500s8.500 4 9.500 10c-1.500 1.700-3.300 1.800-4.600.600-.800 1.700-3 2-4.100.500-1.100 1.500-3.300 1.200-4.100-.500-1.300 1.200-3.100 1.100-4.600-.600z"/><path d="M8 8.500l2 7M12 6v9.500M16 8.500l-2 7"/>',
+  'salgados': '<path d="M12 3.500c-.900 0-1.400.600-1.700 1.600C8 8.200 4.500 10.200 4.500 14.500c0 3.800 3.300 6 7.500 6s7.500-2.200 7.500-6c0-4.300-3.500-6.300-5.800-9.400-.3-1-.8-1.600-1.700-1.600z"/><path d="M9 14.500h.01M12.500 12.500h.01M15.500 15.500h.01M11 17.500h.01"/>',
+  'pratos-e-saladas': '<path d="M7 3v7M4.500 3v5a2.500 2.500 0 0 0 5 0V3M7 10.500V21M17 21V3c-2.300 1.200-3.500 3.800-3.500 7 0 2.200 1.200 3.300 3.500 3.700"/>',
+  'cafes-e-adega': '<path d="M4.500 10h12v4.500a5 5 0 0 1-5 5h-2a5 5 0 0 1-5-5zM16.500 11.500h1.300a2.300 2.300 0 0 1 0 4.600h-1.600M8.500 3.500c-.8 1 .8 2 0 3.500M12.500 3.500c-.8 1 .8 2 0 3.500"/>',
+}
+
 const ext = 'target="_blank" rel="noopener"'
 
 // The vitrine is one glass case: a plaque per shelf above it, and the chosen shelf
@@ -59,7 +68,7 @@ function vitrineHTML() {
       (c, i) =>
         `<button class="plaque" type="button" role="tab" id="tab-${c.id}" aria-controls="${c.id}" aria-selected="${i === 0}"` +
         `${i === 0 ? '' : ' tabindex="-1"'} data-plaque="${i}"><span class="plaque-name">${esc(c.title)}</span>` +
-        `<span class="plaque-count" aria-label="${c.items.length} fotos">${c.items.length}</span></button>`,
+        `<svg class="plaque-icon" viewBox="0 0 24 24" aria-hidden="true">${shelfIcon[c.id]}</svg></button>`,
     )
     .join('')
   const panels = vitrine
