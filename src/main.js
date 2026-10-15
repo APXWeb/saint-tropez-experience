@@ -8,6 +8,7 @@ import Lenis from 'lenis'
 import { createRelief, sunAt } from './js/relief.js'
 import { initStatus } from './js/status.js'
 import { initLightbox } from './js/lightbox.js'
+import { initMenu } from './js/menu.js'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -74,52 +75,9 @@ window.addEventListener('scroll', headerState, { passive: true })
 headerState()
 
 /* Mobile menu */
-const menu = $('[data-menu]')
-const menuBtn = $('[data-menu-open]')
-function setMenu(open, { focus = true } = {}) {
-  menuBtn.setAttribute('aria-expanded', String(open))
-  menuBtn.querySelector('.menu-btn-label').textContent = open ? 'Fechar' : 'Menu'
-  top.dataset.menuState = open ? 'open' : ''
-  if (open) {
-    menu.hidden = false
-    requestAnimationFrame(() => (menu.dataset.open = 'true'))
-    lenis?.stop()
-    document.body.style.overflow = 'hidden'
-    if (focus) setTimeout(() => $('a', menu)?.focus(), 80)
-  } else {
-    menu.dataset.open = 'false'
-    lenis?.start()
-    document.body.style.overflow = ''
-    setTimeout(() => { if (menu.dataset.open === 'false') menu.hidden = true }, reduced ? 0 : 560)
-    if (focus) menuBtn.focus()
-  }
-}
-menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'))
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && menu.dataset.open === 'true') setMenu(false)
-  // Keep Tab inside the open menu (and the header button that closes it).
-  if (e.key === 'Tab' && menu.dataset.open === 'true') {
-    const items = [menuBtn, ...$$('a, button', menu)]
-    const i = items.indexOf(document.activeElement)
-    if (e.shiftKey && i <= 0) { e.preventDefault(); items.at(-1).focus() }
-    else if (!e.shiftKey && i === items.length - 1) { e.preventDefault(); items[0].focus() }
-  }
-})
-window.matchMedia('(min-width: 961px)').addEventListener('change', (e) => {
-  if (e.matches && menu.dataset.open === 'true') setMenu(false, { focus: false })
-})
+const setMenu = initMenu({ top, lenis, reduced })
 
-/* In-page links go through Lenis; the vitrine tabs map to the horizontal rail */
-let railTrigger = null
-const track = $('[data-track]')
-const rail = $('[data-rail]')
-const railDistance = () => Math.max(0, track.scrollWidth - window.innerWidth)
-function shelfY(shelf) {
-  if (!railTrigger) return shelf.getBoundingClientRect().top + window.scrollY - (top.offsetHeight + 12)
-  const gutter = parseFloat(getComputedStyle(track).paddingLeft) || 0
-  const x = Math.min(railDistance(), Math.max(0, shelf.offsetLeft - gutter))
-  return railTrigger.start + (x / railDistance()) * (railTrigger.end - railTrigger.start)
-}
+/* In-page links go through Lenis */
 document.addEventListener('click', (e) => {
   const a = e.target.closest('a[href^="#"]')
   if (!a) return
@@ -130,7 +88,7 @@ document.addEventListener('click', (e) => {
   const fromMenu = a.hasAttribute('data-menu-link')
   if (fromMenu) setMenu(false, { focus: false })
   const go = () => {
-    const y = target.classList.contains('shelf') ? shelfY(target) : id === 'inicio' ? 0 : target.getBoundingClientRect().top + window.scrollY
+    const y = id === 'inicio' ? 0 : target.getBoundingClientRect().top + window.scrollY
     scrollTo(y)
     history.replaceState(null, '', `#${id}`)
     // Move focus for keyboard and screen-reader users without a second jump.
@@ -169,76 +127,38 @@ if (!reduced) {
   })
 }
 
-mm.add(
-  {
-    desktop: '(min-width: 1024px) and (min-height: 621px)',
-    mobile: '(max-width: 1023px), (max-height: 620px)',
-    motion: '(prefers-reduced-motion: no-preference)',
-  },
-  (ctx) => {
-    const { desktop, motion } = ctx.conditions
-    const tabs = $$('.shelf-tab')
-    const shelves = $$('.shelf[id]')
-    const bar = $('[data-rail-bar]')
-    const markTab = (i) => tabs.forEach((t, k) => t.setAttribute('aria-current', String(k === i)))
-
-    // Vitrine: on desktop the shelves slide past like walking along the glass.
-    if (desktop) {
-      const tween = gsap.to(track, {
-        x: () => -railDistance(),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: rail,
-          start: 'top top',
-          end: () => `+=${railDistance() * 0.72}`,
-          pin: true,
-          scrub: motion ? 0.7 : true,
-          invalidateOnRefresh: true,
-          onUpdate(self) {
-            if (bar) bar.style.transform = `scaleX(${self.progress})`
-            const x = self.progress * railDistance() + window.innerWidth * 0.35
-            let current = 0
-            shelves.forEach((s, i) => { if (s.offsetLeft <= x) current = i })
-            markTab(current)
-          },
-          onLeave: () => markTab(-1),
-          onLeaveBack: () => markTab(-1),
-        },
-      })
-      railTrigger = tween.scrollTrigger
-      // Keyboard focus inside the rail: bring the focused photo into view. A mouse click
-      // also focuses the button; moving the rail then would pull the photo out from under
-      // the pointer between press and release and lose the click, so only keyboard focus counts.
-      const onFocus = (e) => {
-        rail.scrollLeft = 0
-        if (!e.target.matches(':focus-visible')) return
-        const piece = e.target.closest('.piece, .shelf-head, .shelf--also')
-        if (!piece || !railTrigger) return
-        // offsetLeft is measured against the rail (the nearest positioned box), unaffected by the track's transform.
-        const left = piece.offsetLeft
-        const x = Math.min(railDistance(), Math.max(0, left - window.innerWidth * 0.3))
-        const y = railTrigger.start + (x / railDistance()) * (railTrigger.end - railTrigger.start)
-        if (Math.abs(window.scrollY - y) > 2) {
-          lenis ? lenis.scrollTo(y, { immediate: true, force: true }) : window.scrollTo(0, y)
-        }
-        // Keyboard users get the shelf in place at once, not after the scrub easing.
-        ScrollTrigger.update()
-        railTrigger.getTween?.()?.progress(1)
-      }
-      rail.addEventListener('focusin', onFocus)
-      return () => {
-        railTrigger = null
-        rail.removeEventListener('focusin', onFocus)
-      }
-    }
-
-    // Narrow screens: native horizontal rows; tabs track the shelf in view.
-    shelves.forEach((s, i) => {
-      ScrollTrigger.create({ trigger: s, start: 'top 60%', end: 'bottom 40%', onToggle: ({ isActive }) => isActive && markTab(i) })
+/* Vitrine: the plaques choose which shelf sits behind the glass. */
+{
+  const plaques = $$('[data-plaque]')
+  const shelves = $$('.shelf[data-shelf]')
+  let current = 0
+  function choose(i, { focus = false } = {}) {
+    if (i === current) return
+    const from = shelves[current]
+    const to = shelves[i]
+    current = i
+    plaques.forEach((p, k) => {
+      p.setAttribute('aria-selected', String(k === i))
+      p.tabIndex = k === i ? 0 : -1
     })
-    return undefined
-  },
-)
+    if (focus) plaques[i].focus()
+    from.hidden = true
+    to.hidden = false
+    if (reduced) return
+    // The new shelf is set into the case piece by piece, from the counter up.
+    gsap.fromTo($$('.piece', to), { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.9, ease: 'expo.out', stagger: 0.06, clearProps: 'clipPath' })
+    gsap.fromTo($$('.piece img', to), { scale: 1.12 }, { scale: 1, duration: 1.2, ease: 'expo.out', stagger: 0.06, clearProps: 'transform' })
+    gsap.fromTo($('.case-base', to), { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power2.out', clearProps: 'all' })
+  }
+  plaques.forEach((p, i) => p.addEventListener('click', () => choose(i)))
+  // Arrow keys move between plaques, as in any tab list.
+  $('[data-plaques]').addEventListener('keydown', (e) => {
+    const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key]
+    if (step) { e.preventDefault(); choose((current + step + plaques.length) % plaques.length, { focus: true }) }
+    if (e.key === 'Home') { e.preventDefault(); choose(0, { focus: true }) }
+    if (e.key === 'End') { e.preventDefault(); choose(plaques.length - 1, { focus: true }) }
+  })
+}
 
 mm.add('(prefers-reduced-motion: no-preference)', () => {
   // O salão: an arch in the wall widens until the room fills the screen.
@@ -294,6 +214,6 @@ window.addEventListener('load', () => {
   lightFromScroll()
   if (location.hash) {
     const t = document.getElementById(location.hash.slice(1))
-    if (t) setTimeout(() => scrollTo(t.classList.contains('shelf') ? shelfY(t) : t.getBoundingClientRect().top + window.scrollY, { immediate: true }), 60)
+    if (t) setTimeout(() => scrollTo(t.getBoundingClientRect().top + window.scrollY, { immediate: true }), 60)
   }
 })

@@ -67,6 +67,7 @@ export const site = {
 export const vitrine = [
   {
     id: 'bolos-e-doces',
+    menu: 'sobremesas', // seção correspondente em cardapio.html
     title: 'Bolos e doces',
     note: 'O nome é o mesmo do destaque da casa no Instagram.',
     items: [
@@ -82,6 +83,7 @@ export const vitrine = [
   },
   {
     id: 'paes-e-folhados',
+    menu: 'paes', // seção correspondente em cardapio.html
     title: 'Pães e folhados',
     note: 'Da vitrine de pães, com os croissants em primeiro plano.',
     items: [
@@ -97,6 +99,7 @@ export const vitrine = [
   },
   {
     id: 'salgados',
+    menu: 'sanduiches', // seção correspondente em cardapio.html
     title: 'Salgados',
     note: 'Assados, tortinhas e sanduíches quentes.',
     items: [
@@ -114,6 +117,7 @@ export const vitrine = [
   },
   {
     id: 'pratos-e-saladas',
+    menu: 'pratos', // seção correspondente em cardapio.html
     title: 'Pratos e saladas',
     note: 'Pratos servidos no salão, nas louças azul-claras da casa.',
     items: [
@@ -128,6 +132,7 @@ export const vitrine = [
   },
   {
     id: 'cafes-e-adega',
+    menu: 'cafes', // seção correspondente em cardapio.html
     title: 'Cafés e adega',
     note: 'Cafés e Adega são destaques da casa no Instagram.',
     items: [

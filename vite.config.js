@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import { pathToFileURL } from 'node:url'
 import { resolve } from 'node:path'
 
-// Fills every {{key}} in index.html from src/render.js, which reads src/data/site.js.
+// Fills every {{key}} in index.html and cardapio.html from src/render.js, which reads src/data/site.js.
 // The data is re-imported on each request so edits show up in dev without a restart.
 function siteData() {
   const renderUrl = pathToFileURL(resolve('src/render.js')).href
@@ -31,5 +31,9 @@ export default defineConfig({
   plugins: [siteData()],
   server: { port: 5190 },
   preview: { port: 4176 },
-  build: { target: 'es2020', assetsInlineLimit: 0 },
+  build: {
+    target: 'es2020',
+    assetsInlineLimit: 0,
+    rollupOptions: { input: { main: resolve('index.html'), cardapio: resolve('cardapio.html') } },
+  },
 })

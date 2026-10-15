@@ -3,6 +3,7 @@
 // so the shipped page is static HTML and every fact lives in one file.
 import images from './data/images.json' with { type: 'json' }
 import { site, vitrine, alsoInHouse, salao, facade, instagramPicks } from './data/site.js'
+import { menu, menuCount, menuSource } from './data/cardapio.js'
 
 const esc = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
@@ -28,6 +29,9 @@ const icon = {
   route: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="6" r="2.4"/><path d="M8.4 18H15a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h6.6"/></svg>',
   insta: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.9" class="dot"/></svg>',
   waze: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 15.5c-1-1.3-1.5-3-1.5-4.6C3 6.5 7 3 12 3s9 3.5 9 7.9-4 7.6-9 7.6h-2.2"/><circle cx="8" cy="19" r="1.8"/><circle cx="15.5" cy="19" r="1.8"/><path d="M9 9.5v.1M15 9.5v.1M9.5 13c1.4 1 3.6 1 5 0"/></svg>',
+  search: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.8-4.8"/></svg>',
+  close: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  back: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H6M11 6l-6 6 6 6"/></svg>',
   expand: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg>',
 }
 
@@ -43,52 +47,50 @@ const highlightIcon = {
 
 const ext = 'target="_blank" rel="noopener"'
 
-// The rail shows the first photos of each shelf; the rest open in the lightbox from the
-// shelf's "ver todas" button, so the vitrine stays short with every photo still reachable.
-const ON_RAIL = 4
+// The vitrine is one glass case: a plaque per shelf above it, and the chosen shelf
+// laid out inside as a composed set of photos. Each shelf shows its first photos
+// (data order = featured first); "ver todas" opens the lightbox with every photo.
+const IN_CASE = 5
 
 function vitrineHTML() {
   let index = 0
-  const nav = vitrine
+  const tabs = vitrine
     .map(
       (c, i) =>
-        `<li><a class="shelf-tab" href="#${c.id}" data-shelf="${i}"><span>${esc(c.title)}</span><span class="shelf-count">${c.items.length}</span></a></li>`,
+        `<button class="plaque" type="button" role="tab" id="tab-${c.id}" aria-controls="${c.id}" aria-selected="${i === 0}"` +
+        `${i === 0 ? '' : ' tabindex="-1"'} data-plaque="${i}"><span class="plaque-name">${esc(c.title)}</span>` +
+        `<span class="plaque-count" aria-label="${c.items.length} fotos">${c.items.length}</span></button>`,
     )
     .join('')
-  const shelves = vitrine
+  const panels = vitrine
     .map((c, ci) => {
       const first = index
-      const items = c.items
-        .map((it, i) => {
-          const n = index++
-          if (i >= ON_RAIL) return ''
-          return (
-            `<figure class="piece piece--${(i % 5) + 1}">` +
-            `<button class="piece-open" type="button" data-index="${n}" aria-label="Ampliar foto: ${esc(it.caption)}">` +
-            picture(it.img, { alt: it.alt, sizes: '(max-width: 760px) 78vw, 30vw' }) +
+      index += c.items.length
+      const shown = c.items.slice(0, IN_CASE)
+      const pieces = shown
+        .map(
+          (it, i) =>
+            `<figure class="piece piece--${i + 1}">` +
+            `<button class="piece-open" type="button" data-index="${first + i}" aria-label="Ampliar foto: ${esc(it.caption)}">` +
+            picture(it.img, { alt: it.alt, sizes: i === 0 ? '(max-width: 760px) 92vw, 34vw' : '(max-width: 760px) 46vw, 17vw' }) +
             `<span class="piece-glass" aria-hidden="true"></span>` +
-            `<span class="piece-zoom" aria-hidden="true">${icon.expand}</span>` +
-            `</button><figcaption>${esc(it.caption)}</figcaption></figure>`
-          )
-        })
+            `</button><figcaption>${esc(it.caption)}</figcaption></figure>`,
+        )
         .join('')
       return (
-        `<section class="shelf" id="${c.id}" aria-labelledby="${c.id}-t" data-shelf="${ci}">` +
-        `<header class="shelf-head"><h3 id="${c.id}-t">${esc(c.title)}</h3><p>${esc(c.note)}</p>` +
-        (c.items.length > ON_RAIL
-          ? `<button class="shelf-more" type="button" data-index="${first}">Ver todas as ${c.items.length} fotos ${icon.expand}</button>`
-          : '') +
-        `</header>` +
-        `<div class="shelf-pieces">${items}</div></section>`
+        `<div class="shelf" id="${c.id}" role="tabpanel" aria-labelledby="tab-${c.id}" data-shelf="${ci}"${ci === 0 ? '' : ' hidden'}>` +
+        `<div class="case-glass case-glass--${shown.length}">${pieces}</div>` +
+        `<div class="case-base">` +
+        `<div class="case-label"><h3>${esc(c.title)}</h3><p>${esc(c.note)}</p></div>` +
+        `<div class="case-actions">` +
+        `<button class="case-more" type="button" data-index="${first}">${icon.expand}<span>Ver as ${c.items.length} fotos</span></button>` +
+        (c.menu ? `<a class="case-menu" href="cardapio.html#${c.menu}"><span>Ver no cardápio</span>${icon.arrow}</a>` : '') +
+        `</div></div></div>`
       )
     })
     .join('')
-  const also =
-    `<aside class="shelf shelf--also" aria-labelledby="also-t"><header class="shelf-head">` +
-    `<h3 id="also-t">E também</h3><p>Sem fotos aqui, mas com destaque próprio no Instagram da casa.</p></header>` +
-    `<ul class="also-list">${alsoInHouse.map((a) => `<li>${esc(a)}</li>`).join('')}</ul>` +
-    `<a class="link-arrow" href="${site.links.instagram}" ${ext}>Ver os destaques no Instagram ${icon.arrow}</a></aside>`
-  return { nav, shelves: shelves + also }
+  const also = `<p class="vitrine-also">E também: ${alsoInHouse.map(esc).join(', ').toLowerCase()}, com destaque próprio no <a href="${site.links.instagram}" ${ext}>Instagram da casa</a>.</p>`
+  return { tabs, panels, also }
 }
 
 function salaoFrames() {
@@ -126,6 +128,58 @@ function instaStrip() {
       (name, i) =>
         `<li class="ig ig--${i + 1}"><a href="${site.links.instagram}" ${ext} aria-label="Abrir o Instagram da Saint Tropez">${picture(name, { alt: '', sizes: '(max-width: 760px) 45vw, 20vw' })}</a></li>`,
     )
+    .join('')
+}
+
+// Cardápio: the index on the home links into cardapio.html, which holds the whole board.
+function menuIndexHTML() {
+  return menu
+    .map(
+      (c) =>
+        `<li><a href="cardapio.html#${c.id}"><span class="mi-name">${esc(c.title)}</span>` +
+        `<span class="mi-tag">${esc(c.tag)}</span><span class="mi-count">${c.items.length}</span></a></li>`,
+    )
+    .join('')
+}
+
+const menuNavHTML = () => menu.map((c) => `<li><a href="#${c.id}">${esc(c.title)}</a></li>`).join('')
+
+function menuItemHTML([no, name, price, desc]) {
+  return (
+    `<li class="carta-item" data-item>` +
+    `<div class="carta-line"><span class="carta-no">${esc(no)}</span><h3 class="carta-name">${esc(name)}</h3>` +
+    `<span class="carta-leader" aria-hidden="true"></span><span class="carta-price">R$ ${esc(price)}</span></div>` +
+    (desc ? `<p class="carta-desc">${esc(desc)}</p>` : '') +
+    `</li>`
+  )
+}
+
+function menuBoardHTML() {
+  return menu
+    .map((c) => {
+      const extras =
+        (c.note ? `<p class="carta-note">${esc(c.note)}</p>` : '') +
+        (c.suggestions
+          ? `<div class="carta-ideas">` +
+            c.suggestions
+              .map(
+                (g) =>
+                  `<div class="carta-ideas-group"><h3>${esc(g.title)}</h3><ul>` +
+                  g.items.map(([n, d]) => `<li><strong>${esc(n)}</strong> ${esc(d)}</li>`).join('') +
+                  `</ul></div>`,
+              )
+              .join('') +
+            (c.sauces ? `<p class="carta-sauces"><strong>Molhos</strong> ${c.sauces.map(esc).join(' · ')}</p>` : '') +
+            `</div>`
+          : '')
+      return (
+        `<section class="carta-cat" id="${c.id}" aria-labelledby="${c.id}-t" data-cat>` +
+        `<header class="carta-head"><p class="carta-tag">${esc(c.tag)}</p><h2 class="carta-title" id="${c.id}-t">${esc(c.title)}</h2></header>` +
+        `<ol class="carta-list" role="list">${c.items.map(menuItemHTML).join('')}</ol>` +
+        extras +
+        `</section>`
+      )
+    })
     .join('')
 }
 
@@ -174,8 +228,9 @@ export function blocks() {
     'instagram': site.links.instagram,
     'ig-handle': site.links.instagramHandle,
     'apx': site.links.apx,
-    'vitrine-nav': v.nav,
-    'vitrine-shelves': v.shelves,
+    'vitrine-tabs': v.tabs,
+    'vitrine-panels': v.panels,
+    'vitrine-also': v.also,
     'salao-wide': picture(salao.wide.img, { alt: salao.wide.alt, sizes: '100vw', cls: 'reveal-pic' }),
     'salao-frames': salaoFrames(),
     'hero-salao': picture('salao-vidro', { alt: 'Corredor do salão sob a cobertura de arcos de vidro, com mesas brancas e cadeiras de palhinha dos dois lados', sizes: '(max-width: 760px) 70vw, 34vw', eager: true }),
@@ -185,11 +240,20 @@ export function blocks() {
     'highlights': highlightsHTML(),
     'insta-strip': instaStrip(),
     'json-ld': jsonLd(),
+    'menu-index': menuIndexHTML(),
+    'menu-nav': menuNavHTML(),
+    'menu-board': menuBoardHTML(),
+    'menu-count': String(menuCount),
+    'menu-cats': String(menu.length),
+    'menu-note': esc(menuSource.note),
     'i-arrow': icon.arrow,
     'i-pin': icon.pin,
     'i-route': icon.route,
     'i-insta': icon.insta,
     'i-waze': icon.waze,
+    'i-search': icon.search,
+    'i-close': icon.close,
+    'i-back': icon.back,
     'year': String(new Date().getFullYear()),
   }
 }

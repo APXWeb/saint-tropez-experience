@@ -83,8 +83,8 @@ export function initLightbox({ onOpen, onClose, reduced }) {
     trigger?.focus({ preventScroll: true })
   })
 
-  // Photos on the rail, and each shelf's "ver todas" button (which starts at the shelf's first photo).
-  document.querySelectorAll('.piece-open, .shelf-more').forEach((btn) => {
+  // Photos in the case, and each shelf's "ver todas" button (which starts at the shelf's first photo).
+  document.querySelectorAll('.piece-open, .case-more').forEach((btn) => {
     btn.addEventListener('click', () => open(Number(btn.dataset.index), btn))
   })
   dialog.querySelector('[data-lb-prev]').addEventListener('click', () => show(index - 1, { dir: -1 }))

@@ -33,6 +33,7 @@
       <nav class="nav" aria-label="Seções">
         <ul>
           <li><a href="#vitrine">Vitrine</a></li>
+          <li><a href="#cardapio">Cardápio</a></li>
           <li><a href="#salao">O salão</a></li>
           <li><a href="#casa">A casa</a></li>
           <li><a href="#instagram">Instagram</a></li>
@@ -50,6 +51,7 @@
     <nav class="menu-nav" aria-label="Menu">
       <ul>
         <li><a href="#vitrine" data-menu-link>Vitrine</a></li>
+        <li><a href="#cardapio" data-menu-link>Cardápio</a></li>
         <li><a href="#salao" data-menu-link>O salão</a></li>
         <li><a href="#casa" data-menu-link>A casa</a></li>
         <li><a href="#instagram" data-menu-link>Instagram</a></li>
@@ -85,17 +87,28 @@
       </div>
     </section>
 
-    <!-- A vitrine: campo turquesa, prateleiras em trilho horizontal -->
+    <!-- A vitrine: um balcão de vidro, uma prateleira por vez -->
     <section class="vitrine" id="vitrine" aria-labelledby="vitrine-t">
-      <div class="vitrine-intro">
-        <h2 id="vitrine-t" class="display">A vitrine</h2>
-        <p>Tudo o que aparece aqui foi fotografado na casa e publicado no Instagram dela. Toque numa foto para ver maior.</p>
-        <nav class="shelf-nav" aria-label="Categorias da vitrine"><ul>{{vitrine-nav}}</ul></nav>
+      <div class="vitrine-inner">
+        <div class="vitrine-intro">
+          <h2 id="vitrine-t" class="display">A vitrine</h2>
+          <p>Bolos, pães, salgados, pratos e cafés, nas fotos que a própria casa publica. Escolha uma prateleira; toque numa foto para ver maior.</p>
+          <div class="plaques" role="tablist" aria-label="Prateleiras da vitrine" data-plaques>{{vitrine-tabs}}</div>
+          {{vitrine-also}}
+        </div>
+        <div class="case" data-case>{{vitrine-panels}}</div>
       </div>
-      <div class="vitrine-rail" data-rail>
-        <div class="vitrine-track" data-track>{{vitrine-shelves}}</div>
+    </section>
+
+    <!-- O cardápio: índice das categorias, cada uma abre a página do cardápio -->
+    <section class="menu-index" id="cardapio" aria-labelledby="cardapio-t">
+      <div class="menu-index-intro">
+        <h2 id="cardapio-t" class="display">O cardápio, <em>com preços</em></h2>
+        <p>{{menu-count}} itens em {{menu-cats}} categorias, do café da manhã ao almoço: cafés, pães na chapa, ovos, canoas, sanduíches, pratos, crepes e sobremesas.</p>
+        <a class="btn btn--line" href="cardapio.html"><span>Abrir o cardápio</span>{{i-arrow}}</a>
+        <p class="menu-index-note">{{menu-note}}</p>
       </div>
-      <div class="rail-progress" aria-hidden="true"><span data-rail-bar></span></div>
+      <ol class="menu-index-list" role="list">{{menu-index}}</ol>
     </section>
 
     <!-- O salão: o arco que se abre -->
@@ -183,6 +196,7 @@
         <h2>Navegue</h2>
         <ul>
           <li><a href="#vitrine">Vitrine</a></li>
+          <li><a href="#cardapio">Cardápio</a></li>
           <li><a href="#salao">O salão</a></li>
           <li><a href="#casa">A casa</a></li>
           <li><a href="{{instagram}}" target="_blank" rel="noopener">Instagram</a></li>

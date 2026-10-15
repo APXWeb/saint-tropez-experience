@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cardápio · Saint Tropez Confeitaria</title>
+  <meta name="description" content="Cardápio da Saint Tropez Confeitaria, {{street}}, {{district}}: cafés, pães na chapa, ovos, canoas, sanduíches, pratos, crepes, sobremesas e sucos, com preços.">
+  <!-- Proposta conceito da APX Web com a marca de um cliente real: fora dos buscadores até a aprovação. -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0CB1AD">
+  <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png">
+  <link rel="apple-touch-icon" href="/icon-180.png">
+  <script>document.documentElement.classList.add('js')</script>
+  <script type="module" src="/src/cardapio.js"></script>
+</head>
+<body class="page-carta">
+  <a class="skip" href="#carta">Pular para o cardápio</a>
+
+  <header class="top" data-top>
+    <div class="top-inner">
+      <a class="brand" href="./" aria-label="Saint Tropez Confeitaria, voltar ao início">
+        <img class="brand-seal" src="/img/selo.png" width="256" height="256" alt="">
+        <span class="brand-text"><span class="brand-name">Saint Tropez</span><span class="brand-sub">confeitaria</span></span>
+      </a>
+      <nav class="nav" aria-label="Seções">
+        <ul>
+          <li><a href="./#vitrine">Vitrine</a></li>
+          <li><a href="cardapio.html" aria-current="page">Cardápio</a></li>
+          <li><a href="./#salao">O salão</a></li>
+          <li><a href="./#casa">A casa</a></li>
+          <li><a href="./#instagram">Instagram</a></li>
+          <li><a href="./#visite">Visite</a></li>
+        </ul>
+      </nav>
+      <p class="status status--top" data-status><span class="status-dot" aria-hidden="true"></span><span data-status-text>Todos os dias a partir das 6h</span></p>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-open>
+        <span class="menu-btn-label">Menu</span><span class="menu-btn-bars" aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="menu" id="menu" data-menu hidden>
+    <nav class="menu-nav" aria-label="Menu">
+      <ul>
+        <li><a href="./">Início</a></li>
+        <li><a href="./#vitrine">Vitrine</a></li>
+        <li><a href="cardapio.html" aria-current="page">Cardápio</a></li>
+        <li><a href="./#salao">O salão</a></li>
+        <li><a href="./#casa">A casa</a></li>
+        <li><a href="./#visite">Visite</a></li>
+      </ul>
+    </nav>
+    <div class="menu-foot">
+      <p class="status" data-status><span class="status-dot" aria-hidden="true"></span><span data-status-text>Todos os dias a partir das 6h</span></p>
+      <address>{{street}}<br>{{district}}, São Paulo</address>
+      <a class="btn btn--canopy" href="{{maps}}" target="_blank" rel="noopener">{{i-pin}}<span>Abrir no Google Maps</span></a>
+    </div>
+  </div>
+
+  <main id="conteudo">
+    <section class="carta-hero" aria-labelledby="carta-t">
+      <div class="carta-hero-inner">
+        <h1 id="carta-t" class="carta-hero-title">O <em>cardápio.</em></h1>
+        <div class="carta-hero-facts">
+          <p class="carta-hero-lead">{{menu-count}} itens, do primeiro café às 6h ao almoço e à sobremesa. Atendimento presencial: o pedido é feito na casa.</p>
+          <p class="carta-hero-note">{{menu-note}}</p>
+          <a class="link-back" href="./">{{i-back}}<span>Voltar ao início</span></a>
+        </div>
+      </div>
+    </section>
+
+    <div class="carta-layout">
+      <aside class="carta-aside" aria-label="Busca e categorias">
+        <div class="carta-search" role="search">
+          <label for="busca">Buscar no cardápio</label>
+          <div class="carta-search-field">
+            {{i-search}}
+            <input id="busca" type="search" autocomplete="off" spellcheck="false" placeholder="Croissant, canoa, 92…" aria-describedby="busca-status" data-search>
+            <button class="carta-search-clear" type="button" aria-label="Limpar busca" hidden data-search-clear>{{i-close}}</button>
+          </div>
+          <p class="carta-search-status" id="busca-status" role="status" aria-live="polite" data-search-status></p>
+        </div>
+        <nav class="carta-nav" aria-label="Categorias do cardápio" data-cat-nav>
+          <ol role="list">{{menu-nav}}</ol>
+        </nav>
+      </aside>
+
+      <div class="carta" id="carta" tabindex="-1">
+        {{menu-board}}
+        <div class="carta-empty" hidden data-search-empty>
+          <p class="carta-empty-title">Nada por aqui.</p>
+          <p>Nenhum item encontrado para “<span data-search-term></span>”. Tente um ingrediente ou o número do item.</p>
+          <button class="btn btn--line" type="button" data-search-reset><span>Limpar busca</span></button>
+        </div>
+      </div>
+    </div>
+
+    <section class="carta-close" aria-labelledby="carta-close-t">
+      <div class="carta-close-inner">
+        <h2 id="carta-close-t" class="display">Escolheu? <em>É só chegar.</em></h2>
+        <p>{{street}}, {{district}}. A casa não faz reservas nem entregas: o pedido é feito no balcão ou à mesa.</p>
+        <a class="btn btn--canopy" href="{{maps}}" target="_blank" rel="noopener">{{i-pin}}<span>Abrir no Google Maps</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot foot--compact">
+    <div class="foot-base">
+      <p>© Saint Tropez Confeitaria · {{street-long}}, {{city-line}}</p>
+      <p>Proposta de site desenvolvida pela <a href="{{apx}}" target="_blank" rel="noopener">APX Web</a>. Conceito, sem vínculo oficial com a Saint Tropez.</p>
+    </div>
+  </footer>
+</body>
+</html>
