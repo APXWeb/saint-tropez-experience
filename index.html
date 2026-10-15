@@ -15,7 +15,21 @@
   <meta property="og:image" content="img/salao-panorama-1600.webp">
   <link rel="icon" type="image/png" sizes="32x32" href="/icon-32.png">
   <link rel="apple-touch-icon" href="/icon-180.png">
-  <script>document.documentElement.classList.add('js'); setTimeout(function () { document.documentElement.classList.add('js-ready') }, 4000)</script>
+  <script>
+    // A entrada da abertura começa de uma vez, quando as fontes do topo estão prontas (ou em 1,2 s,
+    // o que vier primeiro), para o título não aparecer depois do resto.
+    (function () {
+      var d = document.documentElement, fired = false
+      d.classList.add('js')
+      function go() { if (fired) return; fired = true; d.classList.add('hero-go') }
+      setTimeout(go, 1200)
+      function load() {
+        if (!document.fonts || !document.fonts.load) return go()
+        Promise.all([document.fonts.load('400 1em Gloock'), document.fonts.load('400 1em "Figtree Variable"')]).then(go, go)
+      }
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', load); else load()
+    })()
+  </script>
   <script type="application/ld+json">{{json-ld}}</script>
   <script type="module" src="/src/main.js"></script>
 </head>

@@ -1,4 +1,3 @@
-import '@fontsource/gloock'
 import '@fontsource-variable/figtree'
 import './styles/main.css'
 
@@ -103,15 +102,9 @@ document.addEventListener('click', (e) => {
 const mm = gsap.matchMedia()
 
 if (!reduced) {
-  // Opening: sunrise on the wall, the title rises out of its lines, the windows open.
-  const tl = gsap.timeline({ defaults: { ease: 'expo.out' }, onComplete: () => root.classList.add('js-ready') })
-  tl.to({}, { duration: 2.2, ease: 'power2.out', onUpdate() { intro = this.progress(); lightFromScroll() } }, 0)
-    .fromTo('.hero-title .ln > span', { yPercent: 110 }, { yPercent: 0, duration: 1.25, stagger: 0.09 }, 0.15)
-    .fromTo('[data-hero-arch]', { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.5, ease: 'expo.inOut' }, 0.1)
-    .fromTo('[data-hero-arch] img', { scale: 1.18 }, { scale: 1, duration: 2.2 }, 0.1)
-    .fromTo('[data-hero-square]', { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 1.2 }, 0.75)
-    .fromTo(['.hero-lead', '.hero-plaque', '.hero-actions'], { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 1, stagger: 0.08 }, 0.55)
-    .set(['.hero-title .ln > span', '[data-hero-arch]', '[data-hero-square]', '.hero-lead', '.hero-plaque', '.hero-actions'], { clearProps: 'transform,clipPath,opacity,visibility' })
+  // Opening: only the sunrise on the wall runs here. The title, copy and windows enter in CSS
+  // (see "Entrada da abertura"), so they never wait for this script to load.
+  gsap.to({}, { duration: 2.2, ease: 'power2.out', onUpdate() { intro = this.progress(); lightFromScroll() } })
 
   // The windows sit at different depths in the wall.
   gsap.to('[data-hero-square]', { yPercent: -18, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } })

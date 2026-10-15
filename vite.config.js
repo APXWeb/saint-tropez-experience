@@ -25,10 +25,28 @@ function siteData() {
   }
 }
 
+// Preloads the two latin fonts the opening uses (Gloock for the title, Figtree for the copy),
+// so the title is drawn in its real face on the first paint instead of swapping in later.
+// The bundle only exists in build; in dev the fonts come from the CSS as usual.
+function preloadFonts() {
+  return {
+    name: 'preload-fonts',
+    transformIndexHtml: {
+      order: 'post',
+      handler(html, ctx) {
+        if (!ctx.bundle) return html
+        const files = Object.keys(ctx.bundle).filter((f) => /(gloock-latin-400|figtree-latin-wght)-normal-.*\.woff2$/.test(f))
+        const tags = files.map((f) => `  <link rel="preload" as="font" type="font/woff2" href="./${f}" crossorigin>\n`).join('')
+        return html.replace('</head>', `${tags}</head>`)
+      },
+    },
+  }
+}
+
 export default defineConfig({
   // Relative base: the build works at /, at /<repo>/ on GitHub Pages, or from any subfolder.
   base: './',
-  plugins: [siteData()],
+  plugins: [siteData(), preloadFonts()],
   server: { port: 5190 },
   preview: { port: 4176 },
   build: {

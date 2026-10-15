@@ -1,4 +1,3 @@
-import '@fontsource/gloock'
 import '@fontsource-variable/figtree'
 import './styles/main.css'
 import './styles/cardapio.css'
