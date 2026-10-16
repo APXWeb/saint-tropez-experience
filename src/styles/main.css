@@ -575,7 +575,7 @@ html { scrollbar-color: var(--cocoa-2) var(--relief); scrollbar-width: thin; }
   .hl-name { font-size: 0.78rem; }
 }
 
-/* Instagram: a fachada de dia e à noite, num arco que se desliza */
+/* Instagram: a fachada de dia, num arco */
 .duo { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--s4); row-gap: var(--s6); align-items: center; margin-top: var(--s7); }
 .duo-frame {
   grid-column: 1 / 8; position: relative; isolation: isolate; aspect-ratio: 5 / 4; overflow: hidden;
@@ -589,24 +589,6 @@ html { scrollbar-color: var(--cocoa-2) var(--relief); scrollbar-width: thin; }
 .duo-pic { position: absolute; inset: 0; }
 .duo-pic picture, .duo-pic img { width: 100%; height: 100%; }
 .duo-pic img { object-fit: cover; }
-/* Night covers the right of the line; day is what is left of it. */
-.duo-night { clip-path: inset(0 0 0 var(--split, 50%)); }
-.duo-line { position: absolute; top: 0; bottom: 0; left: var(--split, 50%); width: 0; z-index: 2; pointer-events: none; }
-.duo-line::before { content: ''; position: absolute; top: 0; bottom: 0; left: -1px; width: 2px; background: var(--relief-hi); box-shadow: 0 0 0 1px rgba(42, 26, 20, 0.12); }
-.duo-line::after {
-  content: ''; position: absolute; top: 50%; left: -22px; width: 44px; height: 44px; margin-top: -22px; border-radius: 50%;
-  background: var(--turq); box-shadow: 0 0 0 4px var(--relief-hi), 0 12px 22px -10px rgba(8, 50, 48, 0.7);
-}
-.duo-tag {
-  position: absolute; bottom: var(--s4); z-index: 2; padding: 0.3rem 0.65rem; border-radius: 2px; pointer-events: none;
-  background: rgba(248, 249, 246, 0.94); color: var(--cocoa); font-size: 0.8125rem; font-weight: 650; line-height: 1.2;
-}
-.duo-tag--day { left: var(--s4); }
-.duo-tag--night { right: var(--s4); background: var(--cocoa); color: var(--relief-hi); }
-.duo-range {
-  position: absolute; inset: 0; z-index: 4; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; -webkit-appearance: none; appearance: none;
-}
-.duo-frame:has(.duo-range:focus-visible) { outline: 2px solid var(--cocoa); outline-offset: 5px; }
 .duo-copy { grid-column: 9 / 13; display: grid; gap: var(--s3); justify-items: start; }
 .duo-title { font-size: var(--t-h3); line-height: 1; }
 .duo-title em { font-style: normal; color: var(--turq-ink); }

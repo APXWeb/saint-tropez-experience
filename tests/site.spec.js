@@ -319,18 +319,11 @@ test('sem repetição: horário ao vivo só na abertura, avisos num lugar, fotos
   await expect(page.locator('.carta-close a[href="./#casa"]')).toBeVisible()
 })
 
-test('instagram: a fachada de dia e à noite se compara com o deslizador, também pelo teclado', async ({ page }) => {
-  const duo = page.locator('[data-duo]')
+test('instagram: mostra só a fachada de dia, sem deslizador', async ({ page }) => {
+  const duo = page.locator('.duo')
   await duo.scrollIntoViewIfNeeded()
-  await expect(duo.locator('img')).toHaveCount(2)
-  const range = duo.locator('.duo-range')
-  await expect(range).toHaveAttribute('aria-label', /dia e à noite/)
-  await expect.poll(() => duo.evaluate((el) => el.style.getPropertyValue('--split') || getComputedStyle(el).getPropertyValue('--split').trim())).toMatch(/50/)
-  await range.focus()
-  await page.keyboard.press('ArrowRight')
-  await page.keyboard.press('ArrowRight')
-  await expect(range).toHaveValue('52')
-  await expect(duo).toHaveAttribute('style', /--split: 52%/)
+  await expect(duo.locator('img')).toHaveCount(1)
+  await expect(duo.locator('.duo-range')).toHaveCount(0)
   await expect(duo.locator('a', { hasText: 'Ver mais fotos no Instagram' })).toHaveAttribute('href', IG)
 })
 

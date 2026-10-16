@@ -184,25 +184,6 @@ initLightbox({
   onClose: () => lenis?.start(),
 })
 
-/* Instagram: the façade opens from day to night as it comes into view, then the reader can slide it. */
-{
-  const duo = $('[data-duo]')
-  if (duo) {
-    const range = $('.duo-range', duo)
-    const set = (v) => duo.style.setProperty('--split', `${v}%`)
-    set(range.value)
-    range.addEventListener('input', () => set(range.value))
-    if (!reduced) {
-      gsap.fromTo(duo, { '--split': '100%' }, {
-        '--split': `${range.value}%`,
-        duration: 1.8,
-        ease: 'expo.out',
-        scrollTrigger: { trigger: duo, start: 'top 82%', once: true },
-      })
-    }
-  }
-}
-
 /* Map: loads from Google only on request */
 const mapBtn = $('[data-map-load]')
 mapBtn?.addEventListener('click', () => {

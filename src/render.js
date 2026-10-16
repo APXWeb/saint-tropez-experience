@@ -133,23 +133,17 @@ function highlightsHTML() {
     .join('')
 }
 
-// Instagram: the day and the night of the same façade, one arch to slide across.
-// A range input sits over the whole frame, so dragging, touch and the keyboard all work.
+// Instagram: the façade by day, in one arch.
 function instaDuo() {
   const sizes = '(max-width: 960px) 92vw, 46vw'
   return (
-    `<div class="duo" data-duo>` +
+    `<div class="duo">` +
     `<div class="duo-frame">` +
     `<div class="duo-pic duo-day">${picture(instagramDuo.day.img, { alt: instagramDuo.day.alt, sizes })}</div>` +
-    `<div class="duo-pic duo-night">${picture(instagramDuo.night.img, { alt: instagramDuo.night.alt, sizes })}</div>` +
-    `<span class="duo-tag duo-tag--day" aria-hidden="true">De dia</span>` +
-    `<span class="duo-tag duo-tag--night" aria-hidden="true">À noite</span>` +
-    `<span class="duo-line" aria-hidden="true"></span>` +
-    `<input class="duo-range" type="range" min="0" max="100" value="50" aria-label="Deslize para comparar a fachada de dia e à noite">` +
     `</div>` +
     `<div class="duo-copy">` +
-    `<h3 class="duo-title">A mesma fachada, <em>de dia e à noite.</em></h3>` +
-    `<p>De dia, o relevo branco e a marquise turquesa. À noite, a cobertura de arcos e o letreiro acesos. Arraste a linha para comparar.</p>` +
+    `<h3 class="duo-title">A fachada, <em>de dia.</em></h3>` +
+    `<p>O relevo branco e a marquise turquesa da casa.</p>` +
     `<a class="link-arrow" href="${site.links.instagram}" ${ext}>Ver mais fotos no Instagram ${icon.arrow}</a>` +
     `</div>` +
     `</div>`

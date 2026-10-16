@@ -181,8 +181,7 @@ export const facade = {
 }
 
 // Curated, static: photos the house published. Not a live feed.
-// A mesma fachada de dia e à noite: duas fotos da casa, comparadas num único quadro.
+// A fachada de dia: uma foto da casa, num arco.
 export const instagramDuo = {
   day: { img: 'fachada-relevo', alt: 'Canto da fachada em relevo branco com o logotipo e a marquise turquesa, de dia' },
-  night: { img: 'fachada-noite', alt: 'Cobertura de arcos da entrada à noite, iluminada por baixo' },
 }
