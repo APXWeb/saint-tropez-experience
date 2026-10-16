@@ -240,7 +240,7 @@ export function blocks() {
     'street': esc(a.street),
     'street-long': esc(a.streetLong),
     'district': esc(a.district),
-    'city-line': `${esc(a.district)}, ${esc(a.city)}, ${a.state} · ${a.zip}`,
+    'city-line': `${esc(a.district)}, ${esc(a.city)}, ${a.state} · <span class="nowrap">${a.zip}</span>`,
     'region': esc(a.region),
     'hours-summary': esc(site.hoursSummary),
     'hours-rows': hoursRows(),

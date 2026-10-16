@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Página não encontrada · Saint Tropez Confeitaria</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0CB1AD">
+  <style>
+    :root { --turq: #0CB1AD; --cocoa: #2A1A14; --porcelain: #F8F9F6; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100svh; display: grid; place-items: center; padding: 24px; background: var(--turq); color: var(--cocoa); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    main { width: min(100%, 520px); }
+    img { width: 72px; height: 72px; border-radius: 50%; display: block; margin-bottom: 28px; }
+    h1 { margin: 0 0 16px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.4rem, 9vw, 3.6rem); line-height: 1; font-weight: 700; }
+    p { margin: 0 0 28px; font-size: 1.125rem; line-height: 1.5; }
+    a { display: inline-block; padding: 14px 24px; background: var(--porcelain); color: var(--cocoa); font-weight: 650; text-decoration: none; border-radius: 2px; box-shadow: 0 4px 0 rgba(42, 26, 20, 0.35); }
+    a:hover { background: #fff; }
+    a:focus-visible { outline: 3px solid var(--cocoa); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <img id="selo" src="img/selo.png" width="72" height="72" alt="">
+    <h1>Essa página não existe.</h1>
+    <p>O endereço pode ter mudado ou estar digitado errado. O site da Saint Tropez Confeitaria está logo aqui.</p>
+    <a id="home" href="./">Ir para o início</a>
+  </main>
+  <script>
+    // Esta página é servida em qualquer caminho inexistente, então os links relativos não valem.
+    // Em github.io/<repo>/..., a base é /<repo>/; em qualquer outro lugar, a raiz.
+    (function () {
+      var seg = location.pathname.split('/')[1]
+      var base = /\.github\.io$/.test(location.hostname) && seg ? '/' + seg + '/' : '/'
+      document.getElementById('home').href = base
+      document.getElementById('selo').src = base + 'img/selo.png'
+    })()
+  </script>
+</body>
+</html>

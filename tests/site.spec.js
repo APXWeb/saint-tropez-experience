@@ -333,3 +333,37 @@ test('instagram: a fachada de dia e à noite se compara com o deslizador, també
   await expect(duo).toHaveAttribute('style', /--split: 52%/)
   await expect(duo.locator('a', { hasText: 'Ver mais fotos no Instagram' })).toHaveAttribute('href', IG)
 })
+
+test('rodapé: leva a todas as seções, o CEP não quebra no meio e os avisos não se misturam à nota', async ({ page }) => {
+  const foot = page.locator('footer .foot-col').last()
+  await expect(foot.getByRole('link')).toHaveText(['Vitrine', 'Cardápio', 'O salão', 'A casa', 'Instagram', 'Visite'])
+  await expect(foot.getByRole('link', { name: 'Visite' })).toHaveAttribute('href', '#visite')
+  await expect(page.locator('footer .nowrap')).toHaveText('02460-040')
+  // A nota do Google fica numa linha própria, depois dos avisos da casa.
+  await expect(page.locator('.casa-rating')).toHaveCount(2)
+  await expect(page.locator('.casa-rating').first()).not.toContainText('avaliações')
+  await expect(page.locator('.casa-rating--google a')).toContainText('6.342 avaliações')
+})
+
+test('compartilhamento: as duas páginas têm título, imagem 1200x630 e cartão grande', async ({ page, request }) => {
+  for (const url of ['./', 'cardapio.html']) {
+    await page.goto(url)
+    const meta = (p) => page.locator(`meta[${p}]`).getAttribute('content')
+    expect(await meta('property="og:title"')).toBeTruthy()
+    expect(await meta('property="og:description"')).toBeTruthy()
+    expect(await meta('property="og:image"')).toMatch(/og\.jpg$/)
+    expect(await meta('property="og:image:width"')).toBe('1200')
+    expect(await meta('property="og:image:height"')).toBe('630')
+    expect(await meta('name="twitter:card"')).toBe('summary_large_image')
+  }
+  const img = await request.get('og.jpg')
+  expect(img.ok()).toBe(true)
+  expect(img.headers()['content-type']).toContain('image/jpeg')
+})
+
+test('404: a página tem o caminho de volta e o selo', async ({ page }) => {
+  await page.goto('404.html')
+  await expect(page.getByRole('heading', { name: 'Essa página não existe.' })).toBeVisible()
+  await expect(page.getByRole('link', { name: 'Ir para o início' })).toHaveAttribute('href', '/')
+  await expect.poll(() => page.locator('#selo').evaluate((i) => i.naturalWidth)).toBeGreaterThan(0)
+})

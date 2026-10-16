@@ -43,10 +43,34 @@ function preloadFonts() {
   }
 }
 
+// og:image e og:url precisam ser URLs absolutas, senão WhatsApp e redes sociais ignoram a prévia.
+// Em CI o endereço sai de GITHUB_REPOSITORY (https://<dono>.github.io/<repo>/), então o mesmo
+// código serve a cópia de teste e a oficial. SITE_URL sobrescreve. Sem nenhum dos dois (build
+// local), as tags ficam relativas, como antes.
+function socialMeta() {
+  const repo = process.env.GITHUB_REPOSITORY
+  const raw = process.env.SITE_URL || (repo ? `https://${repo.split('/')[0].toLowerCase()}.github.io/${repo.split('/')[1]}/` : '')
+  const site = raw && raw.replace(/\/?$/, '/')
+  return {
+    name: 'social-meta',
+    transformIndexHtml: {
+      order: 'post',
+      handler(html, ctx) {
+        if (!site || !ctx.bundle) return html
+        const page = ctx.path.endsWith('cardapio.html') ? 'cardapio.html' : ''
+        return html
+          .replace(/(<meta property="og:image" content=")(?!https?:)([^"]+)"/, `$1${site}$2"`)
+          .replace('</head>', `  <meta property="og:url" content="${site}${page}">
+</head>`)
+      },
+    },
+  }
+}
+
 export default defineConfig({
   // Relative base: the build works at /, at /<repo>/ on GitHub Pages, or from any subfolder.
   base: './',
-  plugins: [siteData(), preloadFonts()],
+  plugins: [siteData(), preloadFonts(), socialMeta()],
   server: { port: 5190 },
   preview: { port: 4176 },
   build: {

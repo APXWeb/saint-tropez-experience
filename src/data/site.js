@@ -78,7 +78,7 @@ export const vitrine = [
     id: 'bolos-e-doces',
     menu: 'sobremesas', // seção correspondente em cardapio.html
     title: 'Bolos e doces',
-    note: 'O nome é o mesmo do destaque da casa no Instagram.',
+    note: 'Bolos, tortas e doces individuais da vitrine, em fotos da casa.',
     items: [
       { img: 'bolo-camadas-frutas', caption: 'Bolo de camadas com frutas vermelhas', alt: 'Bolo alto de camadas vermelhas e creme, coberto de morangos, amoras e mirtilos com açúcar de confeiteiro' },
       { img: 'doces-finos', caption: 'Doces individuais', alt: 'Doces individuais servidos em pratos brancos: um pudim no pote, um doce em forma de rosa vermelha, um de pistache e um com frutas vermelhas' },

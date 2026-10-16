@@ -90,6 +90,7 @@ a { color: inherit; text-underline-offset: 0.22em; text-decoration-thickness: 1p
 p, h1, h2, h3, ul, figure, address, table { margin: 0; }
 ul { padding: 0; list-style: none; }
 address { font-style: normal; }
+.nowrap { white-space: nowrap; }
 button { font: inherit; color: inherit; cursor: pointer; }
 h1, h2, h3 { font-family: var(--f-display); font-weight: 400; text-wrap: balance; letter-spacing: -0.015em; }
 p { text-wrap: pretty; }
@@ -159,9 +160,9 @@ html { scrollbar-color: var(--cocoa-2) var(--relief); scrollbar-width: thin; }
   position: fixed; inset: 0 0 auto; z-index: 50; height: var(--top-h);
   transition: background-color 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out), color 0.4s var(--ease-out), transform 0.5s var(--ease-out);
 }
-.top[data-scrolled='true'] { background: rgba(248, 249, 246, 0.94); box-shadow: 0 1px 0 rgba(42, 26, 20, 0.1); }
+.top[data-scrolled='true'] { background: rgba(248, 249, 246, 0.985); box-shadow: 0 1px 0 rgba(42, 26, 20, 0.1); }
 .top[data-theme='turq'] { background: var(--turq); box-shadow: 0 1px 0 rgba(42, 26, 20, 0.16); }
-.top[data-theme='night'] { background: rgba(12, 31, 33, 0.94); color: var(--night-ink); box-shadow: 0 1px 0 rgba(233, 241, 239, 0.08); }
+.top[data-theme='night'] { background: rgba(12, 31, 33, 0.985); color: var(--night-ink); box-shadow: 0 1px 0 rgba(233, 241, 239, 0.08); }
 .top-inner {
   height: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter);
   display: flex; align-items: center; gap: var(--s5);
@@ -534,6 +535,7 @@ html { scrollbar-color: var(--cocoa-2) var(--relief); scrollbar-width: thin; }
   font-family: var(--f-display); font-size: clamp(1.6rem, 1.15rem + 1.5vw, 2.4rem); line-height: 1.15;
 }
 .casa-rating { margin-top: var(--s3); font-size: 0.9375rem; font-weight: 600; color: var(--cocoa-2); }
+.casa-rating--google { margin-top: var(--s1); }
 .casa-rating a { text-decoration-thickness: 1.5px; text-decoration-color: var(--turq); }
 .casa-rating a:hover { text-decoration-color: currentColor; }
 @media (max-width: 960px) {
@@ -665,6 +667,7 @@ html { scrollbar-color: var(--cocoa-2) var(--relief); scrollbar-width: thin; }
 .foot-col h2 { font-family: var(--f-ui); font-size: var(--t-small); font-weight: 700; color: var(--turq-hi); letter-spacing: 0.02em; margin-bottom: var(--s2); }
 .foot-col, .foot-col address { font-size: 0.9375rem; line-height: 1.6; color: var(--night-muted); }
 .foot-col a { text-decoration: none; }
+.foot-col li a { display: inline-block; padding-block: 0.3rem; }
 .foot-col a:hover { color: var(--night-ink); text-decoration: underline; }
 .foot-base { margin-top: var(--s7); padding-top: var(--s4); border-top: 1px solid rgba(233, 241, 239, 0.12); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s2) var(--s5); font-size: 0.8125rem; color: var(--night-muted); }
 .foot-base a { color: var(--night-ink); }
