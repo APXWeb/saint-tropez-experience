@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import { pathToFileURL } from 'node:url'
-import { resolve } from 'node:path'
+import { resolve, join } from 'node:path'
+import { existsSync, readdirSync, rmSync } from 'node:fs'
 
 // Fills every {{key}} in index.html and cardapio.html from src/render.js, which reads src/data/site.js.
 // The data is re-imported on each request so edits show up in dev without a restart.
@@ -67,10 +68,27 @@ function socialMeta() {
   }
 }
 
+// Os .json ao lado das fotos em public/img são a origem de cada imagem (tools/provenance.sh):
+// ficam no repositório, mas não precisam ir para o site publicado.
+function dropProvenance() {
+  let out = ''
+  return {
+    name: 'drop-provenance',
+    apply: 'build',
+    configResolved(config) {
+      out = resolve(config.root, config.build.outDir, 'img')
+    },
+    closeBundle() {
+      if (!existsSync(out)) return
+      for (const f of readdirSync(out)) if (f.endsWith('.json')) rmSync(join(out, f))
+    },
+  }
+}
+
 export default defineConfig({
   // Relative base: the build works at /, at /<repo>/ on GitHub Pages, or from any subfolder.
   base: './',
-  plugins: [siteData(), preloadFonts(), socialMeta()],
+  plugins: [siteData(), preloadFonts(), socialMeta(), dropProvenance()],
   server: { port: 5190 },
   preview: { port: 4176 },
   build: {

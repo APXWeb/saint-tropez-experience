@@ -2,7 +2,7 @@
 // vite.config.js replaces each <!-- @name --> marker in index.html with these strings,
 // so the shipped page is static HTML and every fact lives in one file.
 import images from './data/images.json' with { type: 'json' }
-import { site, vitrine, alsoInHouse, salao, facade, instagramDuo } from './data/site.js'
+import { site, checkedOn, vitrine, alsoInHouse, salao, facade, instagramDuo } from './data/site.js'
 import { menu, menuCount, menuSource } from './data/cardapio.js'
 
 const esc = (s) =>
@@ -124,6 +124,23 @@ function hoursRows() {
     .join('')
 }
 
+// Rodapé: dias seguidos com o mesmo horário viram uma linha ("Dom a qui, 6h às 22h").
+function footHours() {
+  const groups = []
+  for (const h of site.hours) {
+    const last = groups.at(-1)
+    if (last && last.open === h.open && last.close === h.close) last.days.push(h.short)
+    else groups.push({ open: h.open, close: h.close, days: [h.short] })
+  }
+  return groups
+    .map(({ open, close, days }) => {
+      const label =
+        days.length === 1 ? days[0] : days.length === 2 ? `${days[0]} e ${days[1].toLowerCase()}` : `${days[0]} a ${days.at(-1).toLowerCase()}`
+      return `${esc(label)}, ${open}h às ${close}h`
+    })
+    .join('<br>')
+}
+
 function highlightsHTML() {
   return site.highlights
     .map(
@@ -233,6 +250,9 @@ export function blocks() {
     'tagline': esc(site.tagline),
     'street': esc(a.street),
     'street-long': esc(a.streetLong),
+    'number': esc(a.number),
+    'foot-hours': footHours(),
+    'checked-on': new Date(`${checkedOn}T12:00:00Z`).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric', timeZone: 'UTC' }),
     'district': esc(a.district),
     'city-line': `${esc(a.district)}, ${esc(a.city)}, ${a.state} · <span class="nowrap">${a.zip}</span>`,
     'region': esc(a.region),

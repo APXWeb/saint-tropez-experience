@@ -90,7 +90,9 @@ function initSearch() {
   const items = cats.flatMap((cat) =>
     $$('[data-item]', cat).map((el) => {
       const name = $('.carta-name', el)
-      return { el, cat, name, original: name.textContent, text: normalize(el.textContent.replace(/\s+/g, ' ')) }
+      // Número, nome, preço e descrição separados por espaço: a busca não cruza de um campo para outro.
+      const text = $$('.carta-no, .carta-name, .carta-price, .carta-desc', el).map((n) => n.textContent).join(' ')
+      return { el, cat, name, original: name.textContent, text: normalize(text) }
     }),
   )
 
@@ -116,6 +118,9 @@ function initSearch() {
       $$('.carta-note, .carta-ideas', cat).forEach((el) => { el.hidden = Boolean(query) })
       navLinks.get(cat.id)?.classList.toggle('is-empty', Boolean(query) && count === 0)
     }
+    // A primeira categoria visível não leva a linha e o espaço de topo, mesmo quando as de cima somem na busca.
+    const firstVisible = cats.find((c) => !c.hidden)
+    for (const cat of cats) cat.classList.toggle('is-first', cat === firstVisible)
     empty.hidden = !query || total > 0
     term.textContent = input.value.trim()
     status.textContent = query ? (total === 1 ? '1 item encontrado' : `${total} itens encontrados`) : ''

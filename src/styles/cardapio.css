@@ -46,7 +46,7 @@
 }
 .carta-search input:focus-visible { outline: none; }
 .carta-search-field:has(input:focus-visible) { box-shadow: 0 2px 0 var(--turq-ink); }
-.carta-search input::placeholder { color: rgba(78, 58, 49, 0.62); }
+.carta-search input::placeholder { color: rgba(78, 58, 49, 0.8); }
 .carta-search input::-webkit-search-cancel-button { -webkit-appearance: none; }
 .carta-search-clear { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 0; background: none; color: var(--cocoa-2); }
 .carta-search-clear[hidden] { display: none; }
@@ -70,7 +70,7 @@
 .carta { min-width: 0; }
 .carta:focus { outline: none; }
 .carta-cat { padding-block: var(--s6); border-top: 1.5px solid var(--cocoa); scroll-margin-top: calc(var(--top-h) + var(--s3)); }
-.carta-cat:first-child { border-top: 0; padding-top: 0; }
+.carta-cat:first-child, .carta-cat.is-first { border-top: 0; padding-top: 0; }
 .carta-cat[hidden], .carta-item[hidden] { display: none; }
 .carta-head { display: grid; gap: 0.2rem; margin-bottom: var(--s4); }
 .carta-tag { font-size: var(--t-small); font-weight: 650; color: var(--turq-ink); }

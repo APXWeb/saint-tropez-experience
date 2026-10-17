@@ -172,7 +172,7 @@ html { scrollbar-color: var(--cocoa-2) var(--relief); scrollbar-width: thin; }
 .brand-text { display: flex; flex-direction: column; line-height: 1; }
 .brand-name { font-family: var(--f-display); font-size: 1.45rem; letter-spacing: -0.01em; }
 .brand-sub { font-size: 0.7rem; font-weight: 650; letter-spacing: 0.34em; text-transform: lowercase; color: var(--turq-ink); margin-top: 0.3rem; }
-.top[data-theme='turq'] .brand-sub { color: var(--cocoa-2); }
+.top[data-theme='turq'] .brand-sub { color: var(--cocoa); }
 .top[data-theme='night'] .brand-sub { color: var(--turq-hi); }
 .nav ul { display: flex; gap: clamp(1rem, 2vw, 2rem); }
 .nav a { position: relative; display: block; padding: 0.5rem 0; font-weight: 600; font-size: 0.975rem; text-decoration: none; }
@@ -180,7 +180,7 @@ html { scrollbar-color: var(--cocoa-2) var(--relief); scrollbar-width: thin; }
   content: ''; position: absolute; left: 0; right: 0; bottom: 0.2rem; height: 1.5px; background: currentColor;
   transform: scaleX(0); transform-origin: right; transition: transform 0.45s var(--ease-out);
 }
-.nav a:hover::after, .nav a[aria-current='true']::after { transform: scaleX(1); transform-origin: left; }
+.nav a:hover::after, .nav a[aria-current='true']::after, .nav a[aria-current='page']::after { transform: scaleX(1); transform-origin: left; }
 .menu-btn { display: none; }
 
 @media (max-width: 960px) {
@@ -216,11 +216,12 @@ html { scrollbar-color: var(--cocoa-2) var(--relief); scrollbar-width: thin; }
 .menu[data-open='true'] .menu-nav li:nth-child(4) a { transition-delay: 0.12s; }
 .menu[data-open='true'] .menu-nav li:nth-child(5) a { transition-delay: 0.16s; }
 .menu[data-open='true'] .menu-nav li:nth-child(6) a { transition-delay: 0.2s; }
+.menu[data-open='true'] .menu-nav li:nth-child(7) a { transition-delay: 0.24s; }
 .menu-foot { display: grid; gap: var(--s4); justify-items: start; padding-top: var(--s5); border-top: 1px solid rgba(42, 26, 20, 0.22); }
 .menu-foot address { font-weight: 550; line-height: 1.5; }
 .menu .btn--canopy { background: var(--relief-hi); box-shadow: inset 0 -4px 0 var(--relief-lo); }
 .top[data-menu-state='open'] { background: var(--turq); color: var(--cocoa); box-shadow: none; }
-.top[data-menu-state='open'] .brand-sub { color: var(--cocoa-2); }
+.top[data-menu-state='open'] .brand-sub { color: var(--cocoa); }
 
 /* Seções: contêiner comum */
 .hero, .vitrine-intro, .menu-index, .salao-frames, .casa, .insta, .visite-grid, .foot-inner, .foot-base {

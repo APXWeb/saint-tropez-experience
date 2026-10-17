@@ -5,6 +5,9 @@
 
 export const checkedOn = '2026-10-13'
 
+// Número da casa: um só lugar. Endereço, rotas e mapa saem daqui; trocar este valor basta.
+const number = '221'
+
 export const site = {
   name: 'Saint Tropez Confeitaria',
   shortName: 'Saint Tropez',
@@ -16,8 +19,9 @@ export const site = {
   // say nº 211. Shown as 221 until the house confirms; see internal.js.
   address: {
     validated: false,
-    street: 'R. Piracema, 221',
-    streetLong: 'Rua Piracema, 221',
+    number,
+    street: `R. Piracema, ${number}`,
+    streetLong: `Rua Piracema, ${number}`,
     district: 'Santa Teresinha',
     city: 'São Paulo',
     state: 'SP',
@@ -32,10 +36,10 @@ export const site = {
     // Opens the exact Google Business place (CID of the profile above).
     maps: 'https://maps.google.com/?cid=42194893093639372',
     directions:
-      'https://www.google.com/maps/dir/?api=1&destination=Saint+Tropez+Confeitaria%2C+R.+Piracema%2C+221+-+Santa+Teresinha%2C+S%C3%A3o+Paulo+-+SP',
+      `https://www.google.com/maps/dir/?api=1&destination=Saint+Tropez+Confeitaria%2C+R.+Piracema%2C+${number}+-+Santa+Teresinha%2C+S%C3%A3o+Paulo+-+SP`,
     waze: 'https://waze.com/ul?ll=-23.4911958%2C-46.6372651&navigate=yes',
     mapEmbed:
-      'https://www.google.com/maps?q=Saint+Tropez+Confeitaria,+R.+Piracema,+221,+Santa+Teresinha,+S%C3%A3o+Paulo&z=16&output=embed',
+      `https://www.google.com/maps?q=Saint+Tropez+Confeitaria,+R.+Piracema,+${number},+Santa+Teresinha,+S%C3%A3o+Paulo&z=16&output=embed`,
     apx: 'https://apxweb.github.io/apex-web/',
   },
 
@@ -176,7 +180,6 @@ export const salao = {
 export const facade = {
   day: { img: 'fachada-inteira', alt: 'O prédio da Saint Tropez inteiro: fachada branca em relevo com o selo e o letreiro, a marquise turquesa e palmeiras na frente' },
   sign: { img: 'fachada-letreiro', alt:'Fachada branca em relevo de pirâmides com o letreiro Saint Tropez confeitaria e a marquise turquesa, sob céu azul' },
-  side: { img: 'fachada-relevo', alt: 'Canto da fachada em relevo branco com o logotipo e a marquise turquesa' },
   night: { img: 'fachada-noite-letreiro', alt: 'A fachada branca em relevo à noite, com o selo e o letreiro Saint Tropez confeitaria iluminados' },
 }
 

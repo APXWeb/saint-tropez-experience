@@ -26,9 +26,11 @@ export function initLightbox({ onOpen, onClose, reduced }) {
   const count = dialog.querySelector('[data-lb-count]')
   let index = 0
   let trigger = null
+  let request = 0 // cada show() é um pedido; só o último pode pôr a foto na moldura
 
   async function show(i, { from, dir = 0 } = {}) {
     index = (i + items.length) % items.length
+    const mine = ++request
     const item = items[index]
     const img = imgFor(item)
     cat.textContent = item.category
@@ -39,6 +41,7 @@ export function initLightbox({ onOpen, onClose, reduced }) {
     } catch {
       /* show it anyway */
     }
+    if (mine !== request) return // outra foto foi pedida (ou a galeria fechou) enquanto esta carregava
     const old = frame.firstElementChild
     frame.replaceChildren(img)
     if (reduced) return
@@ -78,6 +81,7 @@ export function initLightbox({ onOpen, onClose, reduced }) {
   }
 
   dialog.addEventListener('close', () => {
+    request++
     onClose?.()
     frame.replaceChildren()
     trigger?.focus({ preventScroll: true })

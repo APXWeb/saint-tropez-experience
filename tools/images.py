@@ -18,7 +18,6 @@ SHOT = (0, 115, None, None)
 CROPS = {
     'fachada-letreiro': None,
     'fachada-relevo': None,
-    'fachada-noite': None,
     'salao-arcos': (0, 0, 905, None),          # keeps the customer at the right out of frame
     'salao-palmeiras': BADGE,
     'salao-panorama': None,

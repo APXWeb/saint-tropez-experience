@@ -4,6 +4,7 @@ import './styles/main.css'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
+import { site } from './data/site.js'
 import { createRelief, sunAt } from './js/relief.js'
 import { initStatus } from './js/status.js'
 import { initLightbox } from './js/lightbox.js'
@@ -118,7 +119,11 @@ if (!reduced) {
   // Photos set into the wall open from the sill up, the picture settling inside.
   $$('[data-reveal]').forEach((el) => {
     const pic = $('picture', el)
-    const t = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 86%', once: true } })
+    // Ao terminar, o recorte sai: um clip-path fixo cortaria a sombra que o CSS dá à foto.
+    const t = gsap.timeline({
+      scrollTrigger: { trigger: el, start: 'top 86%', once: true },
+      onComplete: () => gsap.set(pic || el, { clearProps: 'clipPath' }),
+    })
     t.fromTo(pic || el, { clipPath: 'inset(18% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3, ease: 'expo.out' })
     if (pic) t.fromTo($('img', pic), { scale: 1.14 }, { scale: 1, duration: 1.6, ease: 'expo.out' }, 0)
     if (!pic) t.fromTo(el, { y: 30 }, { y: 0, duration: 1.1, ease: 'expo.out' }, 0)
@@ -164,9 +169,11 @@ if (!reduced) {
   })
 }
 
-mm.add('(prefers-reduced-motion: no-preference)', () => {
+// A largura entra como condição: ao girar o celular ou redimensionar a janela, o recorte é refeito.
+mm.add({ motion: '(prefers-reduced-motion: no-preference)', narrow: '(max-width: 760px)' }, ({ conditions }) => {
+  if (!conditions.motion) return
   // O salão: an arch in the wall widens until the room fills the screen.
-  const narrow = window.matchMedia('(max-width: 760px)').matches
+  const { narrow } = conditions
   const from = narrow ? 'inset(16% 12% 0% 12% round 38vw 38vw 0vw 0vw)' : 'inset(12% 32% 0% 32% round 18vw 18vw 0vw 0vw)'
   const tl = gsap.timeline({
     scrollTrigger: { trigger: '[data-salao]', start: 'top top', end: '+=105%', pin: true, scrub: 0.6, invalidateOnRefresh: true },
@@ -189,7 +196,7 @@ const mapBtn = $('[data-map-load]')
 mapBtn?.addEventListener('click', () => {
   const iframe = document.createElement('iframe')
   iframe.src = mapBtn.dataset.src
-  iframe.title = 'Mapa com a localização da Saint Tropez Confeitaria na Rua Piracema, 221'
+  iframe.title = `Mapa com a localização da ${site.name} na ${site.address.streetLong}`
   iframe.loading = 'lazy'
   iframe.referrerPolicy = 'no-referrer-when-downgrade'
   iframe.allowFullscreen = true
