@@ -30,11 +30,15 @@ jobs:
         run: |
           cd dist
           missing=0
-          for f in $(grep -oE '(src|href)="\./[^"]+"' index.html | sed -E 's/^(src|href)="\.\///; s/"$//' | sort -u); do
-            [ -f "$f" ] || { echo "faltando: $f"; missing=1; }
-          done
-          for f in $(grep -oE 'img/[a-z0-9-]+\.(webp|avif|png)' index.html | sort -u); do
-            [ -f "$f" ] || { echo "faltando: $f"; missing=1; }
+          for page in index.html cardapio.html; do
+            for f in $(grep -oE '(src|href)="\./[^"]+"' "$page" | sed -E 's/^(src|href)="\.\///; s/"$//' | sort -u); do
+              f="${f%%#*}"   # ./#vitrine aponta para a própria página
+              [ -z "$f" ] && continue
+              [ -f "$f" ] || { echo "faltando em $page: $f"; missing=1; }
+            done
+            for f in $(grep -oE 'img/[a-z0-9-]+\.(webp|avif|png)' "$page" | sort -u); do
+              [ -f "$f" ] || { echo "faltando em $page: $f"; missing=1; }
+            done
           done
           exit $missing
       - uses: actions/upload-pages-artifact@v3
