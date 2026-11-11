@@ -18,10 +18,10 @@ SHOT = (0, 115, None, None)
 CROPS = {
     'fachada-letreiro': None,
     'fachada-relevo': None,
-    'salao-palmeiras': BADGE,
+    'salao-arcos': (0, 0, 905, None),          # keeps the customer at the right out of frame
+    'salao-clientes': None,                    # enhanced 2x photo sent on 2026-11-11, no badge
     'salao-panorama': None,
     'carrinho-bolos': None,
-    'triciclo': BADGE,
     'vitrine-folhados': BADGE,
     'vitrine-paes': BADGE,
     'croissants': BADGE,
