@@ -1,4 +1,4 @@
-﻿"""Crop the house watermark out of the source photos and export AVIF + WebP sizes.
+"""Crop the house watermark out of the source photos and export AVIF + WebP sizes.
 
 Source photos (assets-src/) come from @sainttropezconfeitaria on Instagram and carry
 the house badge in the top-left corner; the crop removes that band. Run from the
@@ -18,7 +18,6 @@ SHOT = (0, 115, None, None)
 CROPS = {
     'fachada-letreiro': None,
     'fachada-relevo': None,
-    'salao-arcos': (0, 0, 905, None),          # keeps the customer at the right out of frame
     'salao-palmeiras': BADGE,
     'salao-panorama': None,
     'carrinho-bolos': None,
@@ -71,6 +70,7 @@ CROPS = {
     'adega-garrafas': SHOT,
     'pratos-balcao': (285, 0, None, None),     # the badge only covers the top-left: cut the left strip, keep the heads
     'fachada-noite-letreiro': None,
+    'loja-balcoes': None,                      # enhanced 2x photo sent on 2026-11-11, no badge
     'balcao-paes': (0, 0, 815, None),          # no badge; drops the carousel arrow at the right edge
 }
 

@@ -169,7 +169,7 @@ export const salao = {
   // Galeria depois do arco: sem legendas; sizes acompanha a grade de .salao-frames.
   frames: [
     { img: 'salao-palmeiras', sizes: '(max-width: 760px) 100vw, 56vw', alt: 'Mesas e cadeiras brancas sob a cobertura de arcos de vidro, com palmeiras e prédios do lado de fora' },
-    { img: 'salao-arcos', sizes: '(max-width: 760px) 50vw, 40vw', alt: 'Salão com piso de madeira, mesas brancas e arcos de vidro, no fim da tarde' },
+    { img: 'loja-balcoes', sizes: '(max-width: 760px) 50vw, 40vw', alt: 'Loja da Saint Tropez vista do balcão: vitrines de pães e doces sob o teto com luzes embutidas' },
     { img: 'carrinho-bolos', sizes: '(max-width: 760px) 50vw, 28vw', alt: 'Carrinho turquesa em forma de triciclo com prateleiras de bolos e doces dentro do salão' },
     { img: 'triciclo', sizes: '(max-width: 760px) 50vw, 28vw', alt: 'Frente de um triciclo turquesa com o logotipo da Saint Tropez, dentro do salão' },
     { img: 'balcao-vitrine', sizes: '(max-width: 760px) 50vw, 56vw', alt: 'Balcão de vitrine branco e comprido, cheio de pães e salgados, no meio do salão' },
