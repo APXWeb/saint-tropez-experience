@@ -1,4 +1,4 @@
-{
-  "prompt": "Sourced: photo published by @sainttropezconfeitaria on Instagram, screenshot sent by the user on 2026-10-14 (assets-src/salao-palmeira.jpg); house badge cropped out and resized by tools/images.py. Not generated.",
-  "createdAt": "2026-10-14T20:47:23.631Z"
+﻿{
+    "prompt":  "Sourced: photo published by @sainttropezconfeitaria on Instagram, enhanced 2x version supplied by the user on 2026-11-11 (saint-tropez-melhoradas-2x.zip, assets-src/salao-palmeira.jpg); resized by tools/images.py, no crop. Not generated from scratch.",
+    "createdAt":  "2026-11-11T18:46:13.8729023Z"
 }

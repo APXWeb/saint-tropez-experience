@@ -1,4 +1,4 @@
-"""Crop the house watermark out of the source photos and export AVIF + WebP sizes.
+﻿"""Crop the house watermark out of the source photos and export AVIF + WebP sizes.
 
 Source photos (assets-src/) come from @sainttropezconfeitaria on Instagram and carry
 the house badge in the top-left corner; the crop removes that band. Run from the
@@ -21,7 +21,7 @@ CROPS = {
     'salao-arcos': (0, 0, 905, None),          # keeps the customer at the right out of frame
     'salao-palmeiras': BADGE,
     'salao-panorama': None,
-    'carrinho-bolos': BADGE,
+    'carrinho-bolos': None,
     'triciclo': BADGE,
     'vitrine-folhados': BADGE,
     'vitrine-paes': BADGE,
@@ -54,23 +54,23 @@ CROPS = {
     'croissants-acucar': SHOT,
     'folhados-coracao': SHOT,
     'sanduiche-salmao': SHOT,
-    'salao-vidro': SHOT,
-    'salao-palmeira': SHOT,
+    'salao-vidro': None,
+    'salao-palmeira': None,
     'quiche-tomate': SHOT,
     'torrada-presunto': SHOT,
     'cafe-espuma': SHOT,
     'crepe-gratinado': SHOT,
-    'fachada-inteira': SHOT,
+    'fachada-inteira': None,
     'coxinhas': SHOT,
-    'balcao-vitrine': SHOT,
+    'balcao-vitrine': None,
     'pizza-presunto': SHOT,
     'adega-maquinas': SHOT,
     # More screenshots sent by the user on 2026-10-14 (second batch, ~850 px).
     'ilha-de-frios': SHOT,
-    'adega-parede': SHOT,
+    'adega-parede': None,
     'adega-garrafas': SHOT,
     'pratos-balcao': (285, 0, None, None),     # the badge only covers the top-left: cut the left strip, keep the heads
-    'fachada-noite-letreiro': (0, 110, None, None),
+    'fachada-noite-letreiro': None,
     'balcao-paes': (0, 0, 815, None),          # no badge; drops the carousel arrow at the right edge
 }
 
